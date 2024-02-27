@@ -1,0 +1,9 @@
+nav {
+    width: 100%;
+    box-sizing: content-box;
+    overflow: scroll;
+}
+
+body{
+    position: relative;
+}
