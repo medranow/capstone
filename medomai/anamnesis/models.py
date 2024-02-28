@@ -23,4 +23,8 @@ class Patient(models.Model):
 class Patienthistory(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, blank=True, null=True, related_name="patient_history")
     date = models.DateTimeField()
-    
+    diagnostic =models.CharField(max_length=500, blank=True, null=True)
+    history =models.CharField(max_length=500, blank=True, null=True) # Explanation of the symptoms
+    prescription = models.CharField(max_length=500, blank=True, null=True)
+    visit = models.CharField(max_length=30, blank=True, null=True) # Reason the patient is visiting
+

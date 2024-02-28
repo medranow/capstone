@@ -5,6 +5,8 @@ from .models import User
 from datetime import datetime
 from django.db import IntegrityError
 from django.http import JsonResponse
+from django.core import serializers
+import json
 
 # Import my models
 from .models import Patient, Patienthistory
@@ -106,7 +108,27 @@ def patient(request):
 
 # Render an anamnesis for the patient just created
 def history(request, patient_id):
-    return render(request, "anamnesis/patientHistory.html", {
-        "patient_id": patient_id
-    })
+    if request.method == "GET":
+        #Get the patient whose id was provided
+        patient = Patient.objects.get(pk=patient_id)
+        name = patient.name
+        lastname = patient.lastname
+        date = patient.date
+        return render(request, "anamnesis/patientHistory.html", {
+            "name": name.capitalize(),
+            "lastname": lastname,
+            "date": date
 
+        })
+    
+    # if statement to save information of the patient
+
+
+# API functiosn
+def patients(request):
+    if request.method == "GET":
+
+        patients = Patient.objects.get(pk=10)
+        patient = patients.name
+
+        return JsonResponse({'message': 'all patients fetched', "data": patient})

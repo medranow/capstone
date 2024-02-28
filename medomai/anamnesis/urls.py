@@ -8,5 +8,9 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("logout", views.logout_view, name="logout"),
     path("patient", views.patient, name="patient"),
-    path("historyform/<int:patient_id>", views.history, name="history")
+    path("historyform/<int:patient_id>", views.history, name="history"),
+
+    # API routes
+    path("patients", views.patients, name="patients")
+
 ]

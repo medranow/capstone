@@ -3,77 +3,89 @@
 
 {% block body %}
 {% if user.is_authenticated %}
-<div class="container mb-2">
-    <h1> New Patient</h1>
-    <h5>Create a new patient to obtain an anamnesis. If the patient is not new, look him up by name.</h5>
-</div>
+<div class="container mb-4">
+    <div class="container mb-2">
+        <div class="mt-4 d-flex flex-md-row justify-content-center">
+                <a href="#" id="seeallpatients">Click to see all patients</a>
+        </div>
 
+        <div class="container mt-4 d-flex flex-md-row justify-content-center">
+            <form class="">
+                <h6>You can look up a patient by name, last name, or phone number</h6>
+                <div class="d-flex">
+                    <input class="form-control me-2 w-50" type="search" placeholder="Search" aria-label="Search" name="search">
+                    <button class="btn btn-outline-success w-25" id="newpatientbutn" type="submit">Search</button>
+                </div>
+              </form>
+        </div>
 
-<div class="container mt-2">
-    <form action="{% url 'patient' %}" method="post">
-        {% csrf_token %}
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputName">Name</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Name" name="name">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputLastName">Last name</label>
-            <input type="text" class="form-control" id="inputPassword4" placeholder="Last Name" name="lastname">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputAddress">Address</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address">
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity" name="city">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputState">State</label>
-            <select id="inputState" class="form-control" name="state">
-                <option selected>Quiché</option>
-                <option>Alta Verapaz</option>
-                <option>Baja Verapaz</option>
-                <option>Chiquimula</option>
-                <option>El Progreso</option>
-                <option>Escuintla</option>
-                <option>Guatemala</option>
-                <option>Huehuetenango</option>
-                <option>Izabal</option>
-                <option>Jalapa</option>
-                <option>Jutiapa</option>
-                <option>Petén</option>
-                <option>Quetzaltenango</option>
-                <option>Retalhuleu</option>
-                <option>Sacatepéquez</option>
-                <option>San Marcos</option>
-                <option>Santa Rosa</option>
-                <option>Sololá</option>
-                <option>Suchitepéquez</option>
-                <option>Totonicapán</option>
-                <option>Zacapa</option>
-            </select>
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputZip">Phone number</label>
-            <input type="text" class="form-control" id="inputnumber" name="phonenumber">
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Create a new patient</button>
-      </form>
-</div>
+        <h1> New Patient</h1>
+        <h5>Create a new patient to obtain an anamnesis. If the patient is not new, look him up by name.</h5>
+    </div>
+    
+    <div class="container mt-2">
+        <form action="{% url 'patient' %}" id="newPatient" method="post">
+            {% csrf_token %}
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputName">Name</label>
+                <input type="text" class="form-control" id="inputName" placeholder="Name" name="name">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputLastName">Last name</label>
+                <input type="text" class="form-control" id="inputPassword4" placeholder="Last Name" name="lastname">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputAddress">Address</label>
+              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" id="inputCity" name="city">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputState">State</label>
+                <select id="inputState" class="form-control" name="state">
+                    <option selected>Quiché</option>
+                    <option>Alta Verapaz</option>
+                    <option>Baja Verapaz</option>
+                    <option>Chiquimula</option>
+                    <option>El Progreso</option>
+                    <option>Escuintla</option>
+                    <option>Guatemala</option>
+                    <option>Huehuetenango</option>
+                    <option>Izabal</option>
+                    <option>Jalapa</option>
+                    <option>Jutiapa</option>
+                    <option>Petén</option>
+                    <option>Quetzaltenango</option>
+                    <option>Retalhuleu</option>
+                    <option>Sacatepéquez</option>
+                    <option>San Marcos</option>
+                    <option>Santa Rosa</option>
+                    <option>Sololá</option>
+                    <option>Suchitepéquez</option>
+                    <option>Totonicapán</option>
+                    <option>Zacapa</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputZip">Phone number</label>
+                <input type="text" class="form-control" id="inputnumber" name="phonenumber">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create a new patient</button>
+          </form>
+    </div>
 
-<div class="container mt-4 d-flex flex-md-row justify-content-center">
-    <form class="">
-        <h6>You can look up a patient by name, last name, or phone number</h6>
-        <div class="d-flex">
-            <input class="form-control me-2 w-50" type="search" placeholder="Search" aria-label="Search" name="search">
-            <button class="btn btn-outline-success w-25" id="newpatientbutn" type="submit">Search</button>
-        </div>
-      </form>
+    <div>
+        <ol>
+            
+        </ol>
+    </div>
+
 </div>
 
 {% else %}
