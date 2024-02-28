@@ -27,6 +27,8 @@ function display_patients() {
             // Create the <a> tag
             var link = document.createElement('a');
             link.href = `file/${element.id}`; // Set the href attribute as needed
+            link.className = 'list-group-item list-group-item-action';
+            
 
             // Create the <li> element
             var patient = document.createElement('li');
