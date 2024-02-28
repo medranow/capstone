@@ -7,5 +7,6 @@ urlpatterns = [
     path("login", views.login_view, name="login"),
     path("register", views.register, name="register"),
     path("logout", views.logout_view, name="logout"),
-    path("patient", views.patient, name="patient")
+    path("patient", views.patient, name="patient"),
+    path("historyform/<int:patient_id>", views.history, name="history")
 ]

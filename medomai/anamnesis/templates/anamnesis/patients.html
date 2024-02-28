@@ -10,7 +10,8 @@
 
 
 <div class="container mt-2">
-    <form>
+    <form action="{% url 'patient' %}" method="post">
+        {% csrf_token %}
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputName">Name</label>
@@ -70,7 +71,7 @@
         <h6>You can look up a patient by name, last name, or phone number</h6>
         <div class="d-flex">
             <input class="form-control me-2 w-50" type="search" placeholder="Search" aria-label="Search" name="search">
-            <button class="btn btn-outline-success w-25" type="submit">Search</button>
+            <button class="btn btn-outline-success w-25" id="newpatientbutn" type="submit">Search</button>
         </div>
       </form>
 </div>
