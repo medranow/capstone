@@ -123,12 +123,19 @@ def history(request, patient_id):
     
     # if statement to save information of the patient
 
+def file(request, patient_id):
+    if request.method == "GET":
+        patient = Patient.objects.get(pk=patient_id)
+        
+        return render(request, "anamnesis/patientFile.html", {
+            "patient": patient
+        })
+
 
 # API functiosn
 def patients(request):
     if request.method == "GET":
 
-        patients = Patient.objects.get(pk=10)
-        patient = patients.name
+        patients = Patient.objects.values('name', 'lastname', 'id')
 
-        return JsonResponse({'message': 'all patients fetched', "data": patient})
+        return JsonResponse({'message': 'all patients fetched', "data": list(patients)})

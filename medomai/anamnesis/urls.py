@@ -9,6 +9,7 @@ urlpatterns = [
     path("logout", views.logout_view, name="logout"),
     path("patient", views.patient, name="patient"),
     path("historyform/<int:patient_id>", views.history, name="history"),
+    path("file/<int:patient_id>", views.file, name="file"),
 
     # API routes
     path("patients", views.patients, name="patients")
