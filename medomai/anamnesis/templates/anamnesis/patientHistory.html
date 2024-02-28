@@ -7,11 +7,12 @@
         Patient: {{name}} {{lastname}}<br>
         Date: {{date}}
     </div>
-    <form class="mb-5">
+    <form action="#" class="mb-5" method="post">
+        {% csrf_token %}
         <div class="container">
             <div class="row mb-3">
                 <label for="resonforvisit" class="form-label">Reason for visit</label>
-                <textarea cols="20" class="form-control" id="" name="resonforvisit" rows="1"></textarea>
+                <textarea cols="20" class="form-control" id="" name="reasonforvisit" rows="1"></textarea>
             </div>
             <div class="row mb-3">
                 <label for="resonforvisit" class="form-label">History of present illness</label>

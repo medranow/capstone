@@ -5,8 +5,9 @@
 {% if user.is_authenticated %}
 <div class="container mb-4">
     <div class="container mb-2">
-        <div class="mt-4 d-flex flex-md-row justify-content-center">
+        <div class="mt-4 d-flex flex-md-row justify-content-center" id="clickallpatients">
                 <a href="#" id="seeallpatients">Click to see all patients</a>
+                <a href="#" id="goBackToNewForm" style="display: none">Go back to new form</a>
         </div>
 
         <div class="container mt-4 d-flex flex-md-row justify-content-center">
@@ -19,11 +20,11 @@
               </form>
         </div>
 
-        <h1> New Patient</h1>
-        <h5>Create a new patient to obtain an anamnesis. If the patient is not new, look him up on the box above.</h5>
     </div>
     
-    <div class="container mt-2">
+    <div class="container mt-2" id="divnewpatient">
+        <h1> New Patient</h1>
+        <h5>Create a new patient to obtain an anamnesis. If the patient is not new, look him up on the box above.</h5>
         <form action="{% url 'patient' %}" id="newPatient" method="post">
             {% csrf_token %}
             <div class="form-row">
@@ -80,9 +81,9 @@
           </form>
     </div>
 
+<!--Show list of patients by javaScript-->
     <div class="list-group mt-4 d-flex flex-md-row justify-content-center">
         <ul id="listofpatients" style="list-style-type:none;">
-
         </ul>
     </div>
 

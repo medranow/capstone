@@ -7,6 +7,7 @@ from django.db import IntegrityError
 from django.http import JsonResponse
 from django.core import serializers
 import json
+from django.core.paginator import Paginator
 
 # Import my models
 from .models import Patient, Patienthistory
@@ -114,15 +115,19 @@ def history(request, patient_id):
         name = patient.name
         lastname = patient.lastname
         date = patient.date
+        patientid = patient.id
         return render(request, "anamnesis/patientHistory.html", {
             "name": name.capitalize(),
             "lastname": lastname,
-            "date": date
+            "date": date,
+            "patientid": patientid
 
         })
+    return render(request, "f'anamnesis/historyForm/{patientid}")
     
-    # if statement to save information of the patient
+    
 
+# Show the patient file
 def file(request, patient_id):
     if request.method == "GET":
         patient = Patient.objects.get(pk=patient_id)
@@ -131,6 +136,25 @@ def file(request, patient_id):
             "patient": patient
         })
 
+# if statement to save information of the patient
+    if request.method == "POST":
+        reasonforvisit = request.POST["reasonforvisit"]
+        historyofillness = request.POST["historyofilness"]
+        diagnostic = request.POST["diagnostic"]
+        prescription = request.POST["prescription"]
+
+        newFile = Patienthistory(
+            patient = patient_id,
+            date = datetime.now(),
+            diagnostic = diagnostic,
+            history = historyofillness,
+            prescription = prescription,
+            visit = reasonforvisit,
+        )
+
+        newFile.save()
+
+    return render(request, "anamnesis/index.html")
 
 # API functiosn
 def patients(request):

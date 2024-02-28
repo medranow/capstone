@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('New patient added');
     });
 
-    // See all patients
+    // See all patients and hide them and go back
     document.querySelector('#seeallpatients').addEventListener('click', () => display_patients());
+    document.querySelector('#goBackToNewForm').addEventListener('click', () => goBackForm());
 
 });
 
@@ -41,7 +42,20 @@ function display_patients() {
             var list = document.getElementById('listofpatients');
             list.appendChild(link);
 
+            // Hide the newform and show the list of patients
+            document.getElementById('divnewpatient').style.display = 'none';
+            document.getElementById('seeallpatients').style.display = 'none';
+            document.getElementById('goBackToNewForm').style.display = 'block';
+            document.getElementById('listofpatients').style.display = 'block';
 
         });
     });
+}
+
+function goBackForm() {
+      // Hide the list of patients and show the new form
+          document.getElementById('seeallpatients').style.display = 'block';
+          document.getElementById('goBackToNewForm').style.display = 'none';
+          document.getElementById('divnewpatient').style.display = 'block';
+          document.getElementById('listofpatients').style.display = 'none';
 }
