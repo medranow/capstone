@@ -7,7 +7,7 @@
         Patient: {{name}} {{lastname}}<br>
         Date: {{date}}
     </div>
-    <form action="#" class="mb-5" method="post">
+    <form action="{% url 'file' patient_id=patientid %}" class="mb-5" method="post">
         {% csrf_token %}
         <div class="container">
             <div class="row mb-3">
@@ -31,5 +31,5 @@
     </form>
     
 
-</div class="">
+</div>
 {% endblock %}

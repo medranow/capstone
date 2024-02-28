@@ -138,13 +138,16 @@ def file(request, patient_id):
 
 # if statement to save information of the patient
     if request.method == "POST":
+
+        patient_instance = Patient.objects.get(pk=patient_id)
+
         reasonforvisit = request.POST["reasonforvisit"]
-        historyofillness = request.POST["historyofilness"]
+        historyofillness = request.POST["historyofillness"]
         diagnostic = request.POST["diagnostic"]
         prescription = request.POST["prescription"]
 
         newFile = Patienthistory(
-            patient = patient_id,
+            patient = patient_instance,
             date = datetime.now(),
             diagnostic = diagnostic,
             history = historyofillness,
