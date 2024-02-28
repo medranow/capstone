@@ -63,3 +63,7 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "anamnesis/register.html")
+
+# create and see a new patient
+def patient(request):
+    return render(request, "anamnesis/patients.html")
