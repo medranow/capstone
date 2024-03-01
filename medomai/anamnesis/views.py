@@ -184,6 +184,10 @@ def patients(request):
     
 def search(request, input):
     if request.method == "GET":
-        matches = Patienthistory.objects.filter(patient__name__icontains=input)
-
-        return JsonResponse({'message': 'all patients fetched', 'data': list(matches.values())})
+        matches = Patient.objects.filter(name__icontains=input)
+        
+        if matches:
+            return JsonResponse({'message': 'all patients fetched', 'data': list(matches.values())})
+        else:
+            matches = Patient.objects.filter(lastname__icontains=input)
+            return JsonResponse({'message': 'all patients fetched', 'data': list(matches.values())})
