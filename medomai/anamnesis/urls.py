@@ -13,6 +13,7 @@ urlpatterns = [
     path("fileview/<int:file_id>", views.fileview, name="fileview"),
 
     # API routes
-    path("patients", views.patients, name="patients")
+    path("patients", views.patients, name="patients"),
+    path("search/<str:input>", views.search, name="search"),
 
 ]

@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // See all patients and hide them and go back
     document.querySelector('#seeallpatients').addEventListener('click', () => display_patients());
     document.querySelector('#goBackToNewForm').addEventListener('click', () => goBackForm());
-
+    document.querySelector('#searchbtn').addEventListener('click', () => search());
 });
 
 function display_patients() {
@@ -58,4 +58,22 @@ function goBackForm() {
           document.getElementById('goBackToNewForm').style.display = 'none';
           document.getElementById('divnewpatient').style.display = 'block';
           document.getElementById('listofpatients').style.display = 'none';
+          document.getElementById('matchsearch').style.display = 'none';
+}
+
+function search() {
+    console.log("Function called");
+
+    var input = document.getElementById('searchinput').value;
+    console.log(`This is the input being passed: ${input}`)
+
+    //Fetch all patients and display them
+    fetch(`/search/${input}`, {
+        method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    });
+    
 }
