@@ -37,6 +37,11 @@
             </ul>
         </nav>
     </div>
+
+    <!--Button to create a new form-->
+    <div class="mt-4 d-flex flex-md-row justify-content-center" id="clickallpatients">
+        <a href="{% url 'history' patient_id=patient.id %}" id="">Click to create a new anamnesis for the patient</a>
+    </div>  
 </div>
 
 {% endblock %}
