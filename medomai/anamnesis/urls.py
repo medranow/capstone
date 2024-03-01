@@ -10,6 +10,7 @@ urlpatterns = [
     path("patient", views.patient, name="patient"),
     path("historyform/<int:patient_id>", views.history, name="history"),
     path("file/<int:patient_id>", views.file, name="file"), #pull a patien file
+    path("fileview/<int:file_id>", views.fileview, name="fileview"),
 
     # API routes
     path("patients", views.patients, name="patients")
