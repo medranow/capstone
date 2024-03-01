@@ -5,10 +5,15 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('New patient added');
     });
 
-    // See all patients and hide them and go back
+    // See all patients and go back to adding a new patient
     document.querySelector('#seeallpatients').addEventListener('click', () => display_patients());
     document.querySelector('#goBackToNewForm').addEventListener('click', () => goBackForm());
+
+    // Search for a patient
     document.querySelector('#searchbtn').addEventListener('click', () => search());
+
+    // Edit a form of a patient
+    document.querySelector('.editform').addEventListener('click', () => search());
 });
 
 function display_patients() {
@@ -105,10 +110,10 @@ function search() {
             document.getElementById('listofpatients').style.display = 'none';
             document.getElementById('matchsearch').style.display = 'block';
 
-
         });
-        
-        
     });
-    
+}
+
+function editform() {
+    console.log("Function called");
 }

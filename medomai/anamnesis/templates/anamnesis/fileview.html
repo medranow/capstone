@@ -1,6 +1,37 @@
 {% extends "anamnesis/layout.html" %}
 {% load static %}
 
+{% block script %}
+<script>
+    function edit(id) {
+        console.log("Edit function called");
+
+        // Obtain the various entries of the form
+        var diagnostic = document.querySelector(`#diagnostic_${id}`).textContent;
+        var prescription = document.querySelector(`#prescription_${id}`).textContent;
+        var dateappointment = document.querySelector(`#nextappointment_${id}`).textContent;
+        console.log(diagnostic, prescription, dateappointment)
+
+        //Toggle on and off between the textarea and the div that holds the text
+        document.querySelector(`#diagnosticEdit_${id}`).style.display= 'block';
+        document.querySelector(`#diagnostic_${id}`).style.display= 'none';
+
+        document.querySelector(`#prescriptionEdit_${id}`).style.display= 'block';
+        document.querySelector(`#prescription_${id}`).style.display= 'none';
+
+        document.querySelector(`#dateEdit_${id}`).style.display= 'block';
+        document.querySelector(`#nextappointment_${id}`).style.display= 'none';
+
+        //Populate the textarea tag with the post text
+        document.querySelector(`#diagnosticEdit_${id}`).innerHTML = diagnostic;
+        document.querySelector(`#prescriptionEdit_${id}`).innerHTML = prescription;
+        document.querySelector(`#dateEdit_${id}`).innerHTML = dateappointment;
+
+    }
+</script>
+
+{% endblock %}
+
 <!--We are able to see a patient's file and able to edit-->
 {% block body %}
     <h2 class="mt-4" style="text-align: center;">{{fileofpatient.patient}}</h2>
@@ -12,11 +43,13 @@
                 <h5 class="card-subtitletitle mb-2">History</h5>
                 <p class="card-text">{{fileofpatient.history}}</p>
                 <h5 class="card-title mb-2">Diagnostic</h5>
-                <p class="card-text">{{fileofpatient.diagnostic}}</p>
+                <p id="diagnostic_{{fileofpatient.id}}" class="card-text">{{fileofpatient.diagnostic}}</p>
+                    <textarea class="form-control" id="diagnosticEdit_{{ fileofpatient.id }}" style="display:none"></textarea>
                 <h5 class="card-title mb-2">Prescription</h5>
-                <p class="card-text">{{fileofpatient.prescription}}</p>
-                <p class="card-text">Next appointment: {{fileofpatient.nextappointment}}</p>
-                <a href="#" class="card-link btn btn-primary">Edit</a>
+                <p id="prescription_{{fileofpatient.id}}" class="card-text">{{fileofpatient.prescription}}</p>
+                    <textarea class="form-control" id="prescriptionEdit_{{ fileofpatient.id }}" style="display:none"></textarea>                <h5 class="card-subtitletitle mb-2">Next appointment:</h5>
+                <p id="nextappointment_{{fileofpatient.id}}" class="card-text">{{fileofpatient.nextappointment}}</p>
+                    <textarea class="form-control" id="dateEdit_{{ fileofpatient.id }}" style="display:none"></textarea>                <button type="button" class="btn btn-primary" onclick="edit({{fileofpatient.id}})">Edit</button>
             </div>
         </div>
         
