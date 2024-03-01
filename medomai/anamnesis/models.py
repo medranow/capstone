@@ -17,7 +17,7 @@ class Patient(models.Model):
     date = models.DateTimeField(null=True)
 
     def __str__(self):
-        return f"Patient {self.name} {self.lastname} has id: {self.id}"
+        return f"Patient {self.name} {self.lastname}"
 
 
 class Patienthistory(models.Model):
