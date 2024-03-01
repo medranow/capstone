@@ -132,10 +132,16 @@ def file(request, patient_id):
     if request.method == "GET":
         patient = Patient.objects.get(pk=patient_id)
         files = Patienthistory.objects.filter(patient_id=patient_id)
+
+        # Pagination
+         # Pagination
+        paginator = Paginator(files, 1) #show 2 posts per page
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
         
         return render(request, "anamnesis/patientFile.html", {
             "patient": patient,
-            "files": files,
+            "files": page_obj,
         })
 
 # if statement to save information of the patient

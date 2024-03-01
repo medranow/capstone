@@ -2,12 +2,41 @@
 {% load static %}
 
 {% block body %}
-<h1>{{patient.name}}</h1>
-<h4>{{patient.lastname}}</h4>
+<div class="container">
+    <div>
+        <h1 style="text-align: center;">{{patient.name}} {{patient.lastname}}</h1>
+    </div>
 
 {% for file in files %}
-    <p>{{file.patient}}</p>
-    <p>{{file.diagnostic}}</p>
-
+    <div class="card col-sm-8 container text-center">
+        <div class="card-header">
+            File: {{file.id}}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Diagnostic</h5>
+            <p class="card-text">{{file.diagnostic}}</p>
+            <a href="#" class="btn btn-primary">View file</a>
+        </div>
+        <div class="card-footer text-muted">
+        {{file.date}}
+        </div>
+    </div>
 {% endfor %}
+
+    <!-- Buttons for navigation in pagination -->
+    <div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {% if files.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ files.previous_page_number }}">Previous</a></li>
+                {% endif %}
+                {% if files.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ files.next_page_number }}">Next</a></li>
+                {% endif %}
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
 {% endblock %}
