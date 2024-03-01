@@ -3,4 +3,11 @@
 
 {% block body %}
 <h1>{{patient.name}}</h1>
+<h4>{{patient.lastname}}</h4>
+
+{% for file in files %}
+    <p>{{file.patient}}</p>
+    <p>{{file.diagnostic}}</p>
+
+{% endfor %}
 {% endblock %}

@@ -1,0 +1,22 @@
+{% extends "anamnesis/layout.html" %}
+{% load static %}
+
+<!--We are able to see a patient's file and able to edit-->
+{% block body %}
+    <h2 class="mt-4" style="text-align: center;">{{fileofpatient.patient}}</h2>
+    
+        <div class="card container col-sm-8" style="text-align: center;">
+            <div class="card-body">
+                <h5 class="card-title mb-2">Visit</h5>
+                <p class="card-text">{{fileofpatient.visit}}</p>
+                <h5 class="card-subtitletitle mb-2">History</h5>
+                <p class="card-text">{{fileofpatient.history}}</p>
+                <h5 class="card-title mb-2">Diagnostic</h5>
+                <p class="card-text">{{fileofpatient.diagnostic}}</p>
+                <h5 class="card-title mb-2">Prescription</h5>
+                <p class="card-text">{{fileofpatient.prescription}}</p>
+                <a href="#" class="card-link btn btn-primary">Edit</a>
+            </div>
+        </div>
+        
+{% endblock %}s

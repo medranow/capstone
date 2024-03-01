@@ -131,9 +131,11 @@ def history(request, patient_id):
 def file(request, patient_id):
     if request.method == "GET":
         patient = Patient.objects.get(pk=patient_id)
+        files = Patienthistory.objects.filter(patient_id=patient_id)
         
         return render(request, "anamnesis/patientFile.html", {
-            "patient": patient
+            "patient": patient,
+            "files": files,
         })
 
 # if statement to save information of the patient
@@ -159,6 +161,13 @@ def file(request, patient_id):
 
     return render(request, "anamnesis/index.html")
 
+def fileview(request, file_id):
+    fileofpatient = Patienthistory.objects.get(pk=file_id)
+    return render(request, "anamnesis/fileview.html", {
+        "fileofpatient": fileofpatient,
+    })
+
+
 # API functiosn
 def patients(request):
     if request.method == "GET":
@@ -166,3 +175,4 @@ def patients(request):
         patients = Patient.objects.values('name', 'lastname', 'id')
 
         return JsonResponse({'message': 'all patients fetched', "data": list(patients)})
+    
