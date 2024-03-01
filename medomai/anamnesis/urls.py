@@ -8,7 +8,7 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("logout", views.logout_view, name="logout"),
     path("patient", views.patient, name="patient"),
-    path("historyform/<int:patient_id>", views.history, name="history"),
+    path("historyform/<int:patient_id>", views.history, name="history"), # create a new form for a patient
     path("file/<int:patient_id>", views.file, name="file"), #pull a patien file
     path("fileview/<int:file_id>", views.fileview, name="fileview"),
 
