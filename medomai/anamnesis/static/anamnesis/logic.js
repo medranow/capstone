@@ -102,7 +102,7 @@ function search() {
             document.getElementById('divnewpatient').style.display = 'none';
             document.getElementById('seeallpatients').style.display = 'none';
             document.getElementById('goBackToNewForm').style.display = 'block';
-            document.getElementById('listofpatients').style.display = 'block';
+            document.getElementById('listofpatients').style.display = 'none';
             document.getElementById('matchsearch').style.display = 'block';
 
 
