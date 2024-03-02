@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from django.core import serializers
 import json
 from django.core.paginator import Paginator
+from django.views.decorators.csrf import csrf_exempt
 
 # Import my models
 from .models import Patient, Patienthistory
@@ -185,13 +186,24 @@ def fileview(request, file_id):
 
 
 # API functiosn
+@csrf_exempt 
+def edit(request, id):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        formToEdit = Patienthistory.objects.get(pk=id)
+        formToEdit.diagnostic = data['diagnostic']
+        formToEdit.prescription = data['prescription']
+        formToEdit.save()
+        return JsonResponse({"message": "saved succesfully"})
+
+
 def patients(request):
     if request.method == "GET":
 
         patients = Patient.objects.values('name', 'lastname', 'id')
 
         return JsonResponse({'message': 'all patients fetched', "data": list(patients)})
-    
+
 def search(request, input):
     if request.method == "GET":
         matches = Patient.objects.filter(name__icontains=input)

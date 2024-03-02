@@ -22,12 +22,50 @@
         document.querySelector(`#dateEdit_${id}`).style.display= 'block';
         document.querySelector(`#nextappointment_${id}`).style.display= 'none';
 
-        //Populate the textarea tag with the post text
+        //Populate the textarea element with the post text
         document.querySelector(`#diagnosticEdit_${id}`).innerHTML = diagnostic;
         document.querySelector(`#prescriptionEdit_${id}`).innerHTML = prescription;
         document.querySelector(`#dateEdit_${id}`).innerHTML = dateappointment;
 
     }
+
+function save(id) {
+    // Get the new texts
+    let newDiagnostic = document.querySelector(`#diagnosticEdit_${id}`).value;
+    let newPrescription = document.querySelector(`#prescriptionEdit_${id}`).value;
+    let newDate = document.querySelector(`#dateEdit_${id}`).value;
+
+    // Save through API
+    fetch(`/edit/${id}`, {
+        method: 'POST',
+        body: JSON.stringify({
+            diagnostic: newDiagnostic,
+            prescription: newPrescription,
+            data: newDate,
+        })
+    })
+    .then(response => response.json())
+    .then(result => console.log(result))
+
+     //Populate the paragraph element with the the new info
+    document.querySelector(`#diagnostic_${id}`).innerHTML = newDiagnostic;
+    document.querySelector(`#prescription_${id}`).innerHTML = newPrescription;
+    document.querySelector(`#nextappointment_${id}`).innerHTML = newDate;
+
+    //Toggle on and off between the textarea and the div that holds the text
+    document.querySelector(`#diagnosticEdit_${id}`).style.display= 'none';
+    document.querySelector(`#diagnostic_${id}`).style.display= 'block';
+
+    document.querySelector(`#prescriptionEdit_${id}`).style.display= 'none';
+    document.querySelector(`#prescription_${id}`).style.display= 'block';
+
+    document.querySelector(`#dateEdit_${id}`).style.display= 'none';
+    document.querySelector(`#nextappointment_${id}`).style.display= 'block';
+
+   
+
+    
+}
 </script>
 
 {% endblock %}
@@ -47,10 +85,13 @@
                     <textarea class="form-control" id="diagnosticEdit_{{ fileofpatient.id }}" style="display:none"></textarea>
                 <h5 class="card-title mb-2">Prescription</h5>
                 <p id="prescription_{{fileofpatient.id}}" class="card-text">{{fileofpatient.prescription}}</p>
-                    <textarea class="form-control" id="prescriptionEdit_{{ fileofpatient.id }}" style="display:none"></textarea>                <h5 class="card-subtitletitle mb-2">Next appointment:</h5>
+                    <textarea class="form-control" id="prescriptionEdit_{{ fileofpatient.id }}" style="display:none"></textarea> 
+                <h5 class="card-title mb-2">Next appointment:</h5>                  
                 <p id="nextappointment_{{fileofpatient.id}}" class="card-text">{{fileofpatient.nextappointment}}</p>
-                    <textarea class="form-control" id="dateEdit_{{ fileofpatient.id }}" style="display:none"></textarea>                <button type="button" class="btn btn-primary" onclick="edit({{fileofpatient.id}})">Edit</button>
+                    <textarea class="form-control" id="dateEdit_{{ fileofpatient.id }}" style="display:none"></textarea>
+                   
+                <button type="button" class="btn btn-primary" onclick="edit({{fileofpatient.id}})">Edit</button><button type="button" class="btn btn-primary" onclick="save({{fileofpatient.id}})">Save</button>
             </div>
         </div>
         
-{% endblock %}s
+{% endblock %}

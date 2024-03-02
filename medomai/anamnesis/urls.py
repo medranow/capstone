@@ -15,5 +15,6 @@ urlpatterns = [
     # API routes
     path("patients", views.patients, name="patients"),
     path("search/<str:input>", views.search, name="search"),
+    path("edit/<int:id>", views.edit, name="edit"),
 
 ]
