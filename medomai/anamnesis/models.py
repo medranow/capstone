@@ -8,6 +8,7 @@ class User(AbstractUser):
     pass
 
 class Patient(models.Model):
+    doctor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name="patients")
     name = models.CharField(max_length=25, blank=True)
     lastname = models.CharField(max_length=25, blank=True)
     address = models.CharField(max_length=50, blank=True, null=True)

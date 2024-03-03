@@ -81,6 +81,7 @@ def patient(request):
     
     if request.method == "POST":
         # Get the information to create a new patient
+        doctor = request.user
         name = request.POST["name"]
         lastname = request.POST["lastname"]
         address = request.POST["address"]
@@ -91,6 +92,7 @@ def patient(request):
         
         # Create a new patient
         newPatient = Patient (
+            doctor =doctor,
             name = name,
             lastname = lastname,
             address = address,
