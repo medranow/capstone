@@ -188,7 +188,6 @@ def fileview(request, file_id):
 
 
 # API functiosn
-@csrf_exempt 
 def edit(request, id):
     if request.method == "POST":
         data = json.loads(request.body)
