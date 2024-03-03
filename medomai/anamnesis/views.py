@@ -194,7 +194,8 @@ def edit(request, id):
         formToEdit = Patienthistory.objects.get(pk=id)
         formToEdit.diagnostic = data['diagnostic']
         formToEdit.prescription = data['prescription']
-        formToEdit.nextappointment = data['date']
+        date = datetime.strptime(data['date'], '%Y-%m-%dT%H:%M') # Convert the input value to a Python datetime object 
+        formToEdit.nextappointment = date
         formToEdit.save()
         return JsonResponse({"message": "saved succesfully"})
 
