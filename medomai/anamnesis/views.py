@@ -200,8 +200,18 @@ def edit(request, id):
         formToEdit = Patienthistory.objects.get(pk=id)
         formToEdit.diagnostic = data['diagnostic']
         formToEdit.prescription = data['prescription']
-        date = datetime.strptime(data['date'], '%Y-%m-%dT%H:%M') # Convert the input value to a Python datetime object 
-        formToEdit.nextappointment = date
+        
+        # Check if the date is provided in the data
+        if 'date' in data and data['date']:
+            date = datetime.strptime(data['date'], '%Y-%m-%dT%H:%M') # Convert the input value to a Python datetime object 
+            formToEdit.nextappointment = date
+        else:
+            formToEdit.nextappointment = None  # Set nextappointment to None if date is not provided
+
+        formToEdit.save()
+
+
+
         formToEdit.save()
         return JsonResponse({"message": "saved succesfully"})
 

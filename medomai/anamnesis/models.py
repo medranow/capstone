@@ -28,5 +28,5 @@ class Patienthistory(models.Model):
     history =models.CharField(max_length=500, blank=True, null=True) # Explanation of the symptoms
     prescription = models.CharField(max_length=500, blank=True, null=True)
     visit = models.CharField(max_length=30, blank=True, null=True) # Reason the patient is visiting
-    nextappointment = models.DateTimeField(null=True)
+    nextappointment = models.DateTimeField(null=True, blank=True)
 
