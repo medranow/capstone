@@ -29,25 +29,7 @@
             </div>
             <div>
                 Next appointment:
-                <div class="row">
-                    <div class="col">
-                        <input type="text" class="form-control" name="day" placeholder="Day">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" name="month" placeholder="Month">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" name="year" placeholder="Year">
-                    </div>
-                    <div class="col">
-                        
-                        <input type="text" class="form-control" name="minute" placeholder="Minutes">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" name="hour" placeholder="Hour">                    </div>
-                </div>
-            </div>
-        </div>
+                <input type="datetime-local" id="appointment_{{ fileofpatient.id }}" name="date" value=""/>
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 </div>

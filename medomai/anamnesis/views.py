@@ -156,14 +156,7 @@ def file(request, patient_id):
         historyofillness = request.POST["historyofillness"]
         diagnostic = request.POST["diagnostic"]
         prescription = request.POST["prescription"]
-        day = int(request.POST["day"])
-        month = int(request.POST["month"])
-        year = int(request.POST["year"])
-        hour = int(request.POST["hour"])
-        minute = int(request.POST["minute"])
-
-        # Combine the date
-        date = datetime(year, month, day, hour, minute)
+        date = datetime.strptime(request.POST['date'], '%Y-%m-%dT%H:%M') # Convert the input value to a Python datetime object 
 
         newFile = Patienthistory(
             patient = patient_instance,
