@@ -182,10 +182,10 @@ def fileview(request, file_id):
     })
 
 # Delete a file
-def delete(request, file_id):
+def delete(request, file_id, patient_id):
     try:
         fileDelete = Patienthistory.objects.get(pk=file_id).delete()
-        return render(request, "anamnesis/index.html")
+        return HttpResponseRedirect(reverse("file", args=(patient_id,)))
     except Patienthistory.DoesNotExist:
                 return render(request, "anamnesis/index.html", {
                     'message': "file does not exist",

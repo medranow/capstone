@@ -16,7 +16,7 @@
             <h5 class="card-title">Diagnostic</h5>
             <p class="card-text">{{file.diagnostic}}</p>
             <a href="{% url 'fileview' file_id=file.id%}" class="btn btn-primary">View file</a>
-            <a href="{% url 'deletefile' file_id=file.id%}" class="btn btn-primary">Delete file</a>
+            <a href="{% url 'deletefile' file_id=file.id patient_id=patient.id %}" class="btn btn-primary">Delete file</a>
         </div>
         <div class="card-footer text-muted">
         {{file.date}}
