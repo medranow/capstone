@@ -171,7 +171,9 @@ def file(request, patient_id):
 
         newFile.save()
 
-    return render(request, "anamnesis/index.html")
+        # Redirect the doctor to the file of the patient
+        return HttpResponseRedirect(reverse("file", args=(patient_id,)))
+
 
 def fileview(request, file_id):
     fileofpatient = Patienthistory.objects.get(pk=file_id)
