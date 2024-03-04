@@ -12,8 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Search for a patient
     document.querySelector('#searchbtn').addEventListener('click', () => search());
 
-    // Edit a form of a patient
-    document.querySelector('.editform').addEventListener('click', () => search());
+
 });
 
 function display_patients() {
@@ -83,6 +82,9 @@ function search() {
     //Fetch all patients and display them
     fetch(`/search/${input}`, {
         method: 'GET',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken')
+        }
     })
     .then(response => response.json())
     .then(data => {
@@ -122,6 +124,19 @@ function search() {
     });
 }
 
-function editform() {
-    console.log("Function called");
+
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
 }
