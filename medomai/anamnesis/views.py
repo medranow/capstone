@@ -205,7 +205,7 @@ def appointments(request):
                 listappointments.append(appointment)
 
         # Pagination
-        paginator = Paginator(listappointments, 2) #show 10 posts per page
+        paginator = Paginator(listappointments, 10) #show 10 posts per page
         page_number = request.GET.get('page')
         listappointments = paginator.get_page(page_number)
 

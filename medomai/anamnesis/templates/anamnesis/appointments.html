@@ -4,10 +4,10 @@
 {% block body %}
     {% if user.is_authenticated %}  
         {% for appointment in appointments %}
-            <div class="container">
-                <div class="card" style="width: 18rem;">
+            <div class="container d-flex justify-content-center">
+                <div id="cardtest" class="card" style="width: 18rem;">
                     <div class="card-body">
-                      <h5 class="card-title">{{appointment.patient}}</h5>
+                      <a href="{% url 'fileview' file_id=appointment.id %}"><h5 class="card-title">{{appointment.patient}}</h5></a>
                       <p class="card-text">{{appointment.nextappointment}}.</p>
                     </div>
                   </div>
@@ -15,7 +15,7 @@
         {% endfor %}
 
          <!-- Buttons for navigation in pagination -->
-         <div>
+         <div class="container d-flex justify-content-center">
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     {% if appointments.has_previous %}
