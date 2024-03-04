@@ -139,7 +139,7 @@ def file(request, patient_id):
 
         # Pagination
          # Pagination
-        paginator = Paginator(files, 10) #show 2 posts per page
+        paginator = Paginator(files, 10) #show 10 posts per page
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         
@@ -203,6 +203,11 @@ def appointments(request):
             # Check if appointment.nextappointment is not None and is in the future
             if appointment.nextappointment is not None and appointment.nextappointment >= aware_datetime:
                 listappointments.append(appointment)
+
+        # Pagination
+        paginator = Paginator(listappointments, 2) #show 10 posts per page
+        page_number = request.GET.get('page')
+        listappointments = paginator.get_page(page_number)
 
         return render(request, "anamnesis/appointments.html", {
             'appointments': listappointments,
