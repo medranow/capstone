@@ -1,0 +1,18 @@
+{% extends "anamnesis/layout.html" %}
+{% load static %}
+
+{% block body %}
+    {% if user.is_authenticated %}  
+        {% for appointment in appointments %}
+            <div class="container">
+                <h4>{{appointment.patient}}</h4>
+                <h5>{{appointment.nextappointment}}</h5>
+            </div>
+        {% endfor %}
+
+
+
+    {% else %}
+        <h1> 403. You do not have access</h1>
+    {% endif %}
+{% endblock %}

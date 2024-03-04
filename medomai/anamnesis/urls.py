@@ -12,6 +12,7 @@ urlpatterns = [
     path("file/<int:patient_id>", views.file, name="file"), #pull a patien file
     path("fileview/<int:file_id>", views.fileview, name="fileview"),
     path("delete/<int:file_id>/<int:patient_id>", views.delete, name="deletefile"),
+    path("appointments", views.appointments, name="appointments"),
 
     # API routes
     path("patients", views.patients, name="patients"),

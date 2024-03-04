@@ -9,6 +9,7 @@ from django.core import serializers
 import json
 from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
+import pytz
 
 # Import my models
 from .models import Patient, Patienthistory
@@ -191,6 +192,21 @@ def delete(request, file_id, patient_id):
                     'message': "file does not exist",
                 })
 
+# Show appointments
+def appointments(request):
+    if request.method == "GET":
+        appointments = Patienthistory.objects.all().order_by('nextappointment')
+        aware_datetime = datetime.now(pytz.utc)  # Create an aware datetime object with timezone information
+
+        listappointments = []
+        for appointment in appointments:
+            # Check if appointment.nextappointment is not None and is in the future
+            if appointment.nextappointment is not None and appointment.nextappointment >= aware_datetime:
+                listappointments.append(appointment)
+
+        return render(request, "anamnesis/appointments.html", {
+            'appointments': listappointments,
+        })
 
 
 # API functiosn
