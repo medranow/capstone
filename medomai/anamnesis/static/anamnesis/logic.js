@@ -53,18 +53,26 @@ function display_patients() {
             document.getElementById('goBackToNewForm').style.display = 'block';
             document.getElementById('listofpatients').style.display = 'block';
 
+
         });
     });
 }
 
 function goBackForm() {
+
+        //Clear the list of patients
+        var listofpatients = document.querySelector('#listofpatients');
+        listofpatients.innerHTML = " ";
+
       // Hide the list of patients and show the new form
           document.getElementById('seeallpatients').style.display = 'block';
           document.getElementById('goBackToNewForm').style.display = 'none';
           document.getElementById('divnewpatient').style.display = 'block';
           document.getElementById('listofpatients').style.display = 'none';
           document.getElementById('matchsearch').style.display = 'none';
-}
+
+         
+}       
 
 function search() {
     console.log("Function called");
