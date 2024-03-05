@@ -196,6 +196,7 @@ def delete(request, file_id, patient_id):
 def appointments(request):
     if request.method == "GET":
         appointments = Patienthistory.objects.all().order_by('nextappointment')
+
         aware_datetime = datetime.now(pytz.utc)  # Create an aware datetime object with timezone information
 
         listappointments = []
