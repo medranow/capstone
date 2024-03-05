@@ -91,7 +91,7 @@ function getCookie(name) {
 <!--We are able to see a patient's file and able to edit-->
 {% block body %}
 {% if user.is_authenticated %}
-<a href="{% url 'file' fileofpatient.patient_id%}"><h2 class="mt-4" style="text-align: center;">{{fileofpatient.patient}}</h2></a>
+<a href="{% url 'file' fileofpatient.patient.id%}"><h2 class="mt-4" style="text-align: center;">{{fileofpatient.patient}}</h2></a>
     
         <div class="card container col-sm-8" style="text-align: center;">
             <div class="card-body">
