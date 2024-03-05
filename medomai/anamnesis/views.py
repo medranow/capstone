@@ -242,7 +242,7 @@ def patients(request):
     if request.method == "GET":
 
 
-        patients = Patient.objects.filter(doctor=request.user).values('name', 'lastname', 'id')
+        patients = Patient.objects.filter(doctor=request.user).order_by('name').values('name', 'lastname', 'id')
 
         return JsonResponse({'message': 'all patients fetched', "data": list(patients)})
 
