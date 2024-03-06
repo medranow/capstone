@@ -34,13 +34,13 @@ function display_patients() {
             // Create the <a> tag
             var link = document.createElement('a');
             link.href = `file/${element.id}`; // Set the href attribute as needed
-            link.className = 'list-group-item list-group-item-action';
+            link.className = '';
             
 
             // Create the <li> element
             var patient = document.createElement('li');
             patient.innerHTML = `${element.name} ${element.lastname}`;
-            patient.className = 'listpatients';
+            patient.className = 'list-group-item';
 
             // Append the <li> to the <a>
             link.appendChild(patient);
