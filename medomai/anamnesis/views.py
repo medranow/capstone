@@ -16,7 +16,10 @@ from .models import Patient, Patienthistory
 
 # Create your views here.
 def index(request):
-    return render(request, "anamnesis/index.html")
+    doctor = request.user.get_username()
+    return render(request, "anamnesis/index.html", {
+        'doctor': doctor,
+    })
 
 # Log in user
 def login_view(request):

@@ -46,9 +46,11 @@ h5 {
     border: none;
     width:auto;
     height: 60px;
-    
+}
 
-
+#indexTitle {
+    text-align: center;
+    font-size: 2rem;
 }
 
 #listofpatients li {

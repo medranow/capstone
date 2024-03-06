@@ -5,7 +5,12 @@
 
     {% if user.is_authenticated %}
         <div class="container mt-5">
-            <p>Welcome to Anamnesis, a platform that helps doctors keep control of their patients and their career.</p>
+            <p id="indexTitle">Welcome to Anamnesis.</p>
+            <p>A fews things to know whether you are a new or a frequent user:<br>
+                Under the <i>patients</i> tab you are able to add a new patient, search for a patient or see the whole list of your patients.<br>
+                Once you create a new patient, or check a patient's file, you are able to add an anamensis for this person.<br>
+                Under the <i>appointments</i> tab, you will be able to see all your coming appointments, but not your past ones. For that, head to your patients file.
+            </p>
 
             {% if message %}
                 {{ message }}
