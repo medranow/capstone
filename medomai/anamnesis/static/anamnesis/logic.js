@@ -9,8 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#seeallpatients').addEventListener('click', () => display_patients());
     document.querySelector('#goBackToNewForm').addEventListener('click', () => goBackForm());
 
-    // Search for a patient
-    document.querySelector('#searchbtn').addEventListener('click', () => search());
+    document.querySelector('#searchbtn').addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default form submission behavior
+        search(); // Call the search function
+    });
 
 
 });
@@ -68,61 +70,64 @@ function goBackForm() {
           document.getElementById('goBackToNewForm').style.display = 'none';
           document.getElementById('divnewpatient').style.display = 'block';
           document.getElementById('listofpatients').style.display = 'none';
-          document.getElementById('matchsearch').style.display = 'none';
 
          
 }       
 
-function search() {
+async function search() {
     console.log("Function called");
 
-    var input = document.getElementById('searchinput').value;
-    console.log(`This is the input being passed: ${input}`)
+    // Empty the matchsearch element before appending new results
+    document.getElementById('matchsearch').innerHTML = '';
 
-    //Fetch all patients and display them
-    fetch(`/search/${input}`, {
-        method: 'GET',
-        headers: {
-            'X-CSRFToken': getCookie('csrftoken')
+    var input = document.getElementById('searchinput').value;
+    console.log(`This is the input being passed: ${input}`);
+
+    try {
+        // Fetch all patients and display them
+        const response = await fetch(`/search/${input}`, {
+            method: 'GET',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken')
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
         }
-    })
-    .then(response => response.json())
-    .then(data => {
+
+        const data = await response.json();
         var message = data.message;
         var array = data.data;
         console.log(message);
         console.log(array);
 
-        //loop over the array
+        // loop over the array
         array.forEach(element => {
             console.log(element);
 
             // Create the <a> tag
             var link = document.createElement('a');
-            link.href = `file/${element.id}`
+            link.href = `file/${element.id}`;
             link.className = 'list-group-item list-group-item-action';
 
-            //Create the <li> element
+            // Create the <li> element
             var patient = document.createElement('li');
             patient.innerHTML = `${element.name} ${element.lastname}`;
 
             // Append the <li> to the <a>
             link.appendChild(patient);
 
-             // Append the <a> to the list
+            // Append the <a> to the list
             var list = document.getElementById('matchsearch');
             list.appendChild(link);
-
-            // Hide the newform and show the list of patients
-            document.getElementById('divnewpatient').style.display = 'none';
-            document.getElementById('seeallpatients').style.display = 'none';
-            document.getElementById('goBackToNewForm').style.display = 'block';
-            document.getElementById('listofpatients').style.display = 'none';
-            document.getElementById('matchsearch').style.display = 'block';
-
+            
         });
-    });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
 }
+
 
 
 

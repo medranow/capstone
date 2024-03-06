@@ -12,12 +12,19 @@
 
         <div class="container mt-4 d-flex flex-md-row justify-content-center">
             <form id="searchpatient">
-                <h6>You can look up a patient by name, last name, or phone number</h6>
+                <h6>You can look up a patient by name or last name. Always try your search twice or reload the page before trying again.</h6>
                 <div class="d-flex">
                     <input class="form-control me-2 w-50" type="search" placeholder="Search" aria-label="Search" name="search" id="searchinput">
                     <button class="btn btn-outline-success w-25" id="searchbtn" type="submit">Search</button>
                 </div>
               </form>
+                 
+        </div>
+
+         <!--Show list of patients SEARCHED by javaScript-->
+         <div class="list-group mt-4 d-flex flex-md-row justify-content-center">
+            <ul id="matchsearch" style="list-style-type:none;">
+            </ul>
         </div>
 
     </div>
@@ -87,11 +94,7 @@
         </ul>
     </div>
 
-  <!--Show list of patients SEARCHED by javaScript-->
-  <div class="list-group mt-4 d-flex flex-md-row justify-content-center">
-    <ul id="matchsearch" style="list-style-type:none;">
-    </ul>
-  </div>    
+  
 </div>
 
 {% else %}

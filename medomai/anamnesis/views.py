@@ -247,11 +247,13 @@ def patients(request):
         return JsonResponse({'message': 'all patients fetched', "data": list(patients)})
 
 def search(request, input):
+    user = request.user
+
     if request.method == "GET":
-        matches = Patient.objects.filter(name__icontains=input)
+        matches = Patient.objects.filter(name__icontains=input, doctor=user)
         
         if matches:
             return JsonResponse({'message': 'all patients fetched', 'data': list(matches.values())})
         else:
-            matches = Patient.objects.filter(lastname__icontains=input)
+            matches = Patient.objects.filter(lastname__icontains=input, doctor=user)
             return JsonResponse({'message': 'all patients fetched', 'data': list(matches.values())})
