@@ -15,7 +15,21 @@
     {% else %}
 
         <div class="container mt-5">
-            <p>Welcome to Anamnesis</p>
+            <section class="d-flex flex-column">
+                <div class="d-flex justify-content-center">
+                    <h1>Welcome to Anamnesis</h1>
+                </div>
+                <div class="d-flex justify-content-center" style="text-align: center">
+                    <h4>We are trying to make the everyday life of doctors easier by providing a managing tool where they
+                        can keep control of their patients and their appointments.
+                    </h4>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <img src="{% static 'anamnesis/images/stethoscope.png' %}" alt="stethoscope" class="img-thumbnail text-center" id="imageIndex">
+                </div>
+                
+            </section>
+         
         </div>
     
     {% endif %}

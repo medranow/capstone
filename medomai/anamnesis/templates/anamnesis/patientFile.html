@@ -4,8 +4,10 @@
 {% block body %}
     {% if user.is_authenticated %}
         <div class="container">
-            <div>
-                <h1 style="text-align: center;">{{patient.name}} {{patient.lastname}}</h1>
+            <div style="text-align: center;">
+                <h1 >{{patient.name}} {{patient.lastname}}</h1>
+                <h6>Phone number: {{patient.phonenumber}}</h6>
+                <h6>City: {{patient.city}}</h6>
             </div>
 
         {% for file in files %}
