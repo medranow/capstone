@@ -53,6 +53,7 @@ function display_patients() {
             document.getElementById('seeallpatients').style.display = 'none';
             document.getElementById('goBackToNewForm').style.display = 'block';
             document.getElementById('listofpatients').style.display = 'block';
+            document.getElementById('matchsearch').style.display = 'none';
 
 
         });
@@ -70,6 +71,7 @@ function goBackForm() {
           document.getElementById('goBackToNewForm').style.display = 'none';
           document.getElementById('divnewpatient').style.display = 'block';
           document.getElementById('listofpatients').style.display = 'none';
+          document.getElementById('matchsearch').style.display = 'none';
 
          
 }       
@@ -121,6 +123,13 @@ async function search() {
             // Append the <a> to the list
             var list = document.getElementById('matchsearch');
             list.appendChild(link);
+
+            // Hide the list of patients and show the new form
+            document.getElementById('seeallpatients').style.display = 'none';
+            document.getElementById('goBackToNewForm').style.display = 'block';
+            document.getElementById('divnewpatient').style.display = 'none';
+            document.getElementById('listofpatients').style.display = 'none';
+            document.getElementById('matchsearch').style.display = 'block';
             
         });
     } catch (error) {
