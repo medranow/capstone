@@ -3,6 +3,7 @@
 
 {% block body %}
 <section class="credential">
+    <h2>Register to use the app</h2>
     <div class="mt-4 d-flex justify-content-center container">
         <form action="{% url 'register' %}" method="post">
             {% csrf_token %}

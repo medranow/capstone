@@ -1,15 +1,8 @@
-a:link {
-
-}
-
 body{
     position: relative;
     background-color: rgb(245, 239, 220);
     font-family: "Calibri";
-
 }
-
-
 
 .credential {
     margin-top: 80px;
@@ -25,6 +18,11 @@ body{
 
 h1 {
     color: #9a6d44;
+}
+
+h2 {
+    color:#996f47;
+    text-align: center;
 }
 
 h5 {
