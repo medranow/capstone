@@ -40,6 +40,7 @@ function display_patients() {
             // Create the <li> element
             var patient = document.createElement('li');
             patient.innerHTML = `${element.name} ${element.lastname}`;
+            patient.className = 'listpatients';
 
             // Append the <li> to the <a>
             link.appendChild(patient);

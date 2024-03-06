@@ -1,3 +1,7 @@
+a:link {
+
+}
+
 body{
     position: relative;
     background-color: rgb(245, 239, 220);
@@ -16,10 +20,45 @@ body{
     background-color: #d9cfc1;  
 }
 
+
+h1 {
+    color: #9a6d44;
+}
+
+h5 {
+    color:#996f47;
+}
+
+#listofpatients li {
+    color:#ba3f1d;
+    margin-top: 2px;
+    margin-bottom: 5px;
+    padding-bottom: 0px;
+    padding-bottom: opx;
+    
+
+}
+
+#pagination {
+    background-color: rgb(245, 239, 220);
+}
+
+.paginationbtn {
+    background-color: #ba3f1d;
+}
+
 nav {
     width: 100%;
     box-sizing: content-box;
     overflow: scroll;
     background-color: rgb(128, 161, 193);
     color: white;
+}
+
+.navbar-nav li:hover {
+    background-color:#eee3ab;
+}
+
+ul {
+    list-style-type: none;
 }

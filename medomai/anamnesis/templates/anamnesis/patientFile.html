@@ -9,12 +9,12 @@
             </div>
 
         {% for file in files %}
-            <div class="card col-sm-8 container text-center">
+            <div class="card col-sm-8 container text-center ">
                 <div class="card-header">
                     File: {{file.id}}
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Diagnostic</h5>
+                    <h6 class="card-title">Diagnostic</h6>
                     <p class="card-text">{{file.diagnostic}}</p>
                     <a href="{% url 'fileview' file_id=file.id %}" class="btn btn-primary">View file</a>
                     <a href="{% url 'deletefile' file_id=file.id patient_id=patient.id %}" class="btn btn-primary">Delete file</a>
@@ -26,11 +26,11 @@
         {% endfor %}
 
             <!-- Buttons for navigation in pagination -->
-            <div>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
+            <div class="container w-25">
+                <nav aria-label="Page navigation" id="pagination">
+                    <ul class="">
                         {% if files.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?page={{ files.previous_page_number }}">Previous</a></li>
+                        <li class="page-item paginationbtn"><a class="page-link" href="?page={{ files.previous_page_number }}">Previous</a></li>
                         {% endif %}
                         {% if files.has_next %}
                         <li class="page-item"><a class="page-link" href="?page={{ files.next_page_number }}">Next</a></li>
