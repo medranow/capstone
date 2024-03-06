@@ -3,19 +3,20 @@
 
 {% block body %}
 
-{% if user.is_authenticated %}
-<div class="container mt-5">
-    <p>Welcome to Anamnesis, a platform that helps doctors keep control of their patients and their career.</p>
+    {% if user.is_authenticated %}
+        <div class="container mt-5">
+            <p>Welcome to Anamnesis, a platform that helps doctors keep control of their patients and their career.</p>
 
-    {% if message %}
-        {{ message }}
+            {% if message %}
+                {{ message }}
+            {% else %}
+            {% endif %}
+        </div>
     {% else %}
-    {% endif %}
-</div>
-{% else %}
 
-<div>
-    <p>Welcome to Anamnesis</p></div>
-   
-{% endif %}
+        <div class="container mt-5">
+            <p>Welcome to Anamnesis</p>
+        </div>
+    
+    {% endif %}
 {% endblock %}

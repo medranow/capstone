@@ -1,14 +1,25 @@
+body{
+    position: relative;
+    background-color: rgb(245, 239, 220);
+}
+
+
+
+.credential {
+    margin-top: 80px;
+    
+}
+
+.card {
+    margin-top: 8px;
+    margin-bottom: 6px;
+    background-color: #d9cfc1;  
+}
+
 nav {
     width: 100%;
     box-sizing: content-box;
     overflow: scroll;
-}
-
-body{
-    position: relative;
-}
-
-.card {
-    margin-top: 5px;
-    margin-bottom: 6px;
+    background-color: rgb(128, 161, 193);
+    color: white;
 }
