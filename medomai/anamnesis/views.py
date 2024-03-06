@@ -139,7 +139,7 @@ def file(request, patient_id):
 
         # Pagination
          # Pagination
-        paginator = Paginator(files, 1) #show 10 posts per page
+        paginator = Paginator(files, 10) #show 10 posts per page
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         
