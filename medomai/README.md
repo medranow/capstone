@@ -32,5 +32,9 @@ Finally, *patients.html* contains the main part of the app with a link to see al
 A *urls.py* was created with all the routes that form the logic of the app along with the file *views.py*. Both files form the back-end of the application and the mechanics sort of speak of it.
 
 ## How to run the application
+First, install the library *pytz* listed in the file *requirements.txt* found in the main directory. Run `python manage.py runserver`. Once the app is running, create a user and log in. When you click the *patients* tab in the navbar, you will be able to create a new patient, search for a patient or list all your patients. When you create a new patient, once the form is submitted, it will redirect you to an form to create the first *anamnesis* (a patient's record) of the new patient. 
 
+If you search for a patient recently created, or list your patients, you are able to click on the name and it will direct you to the file of the patient which can contain a single or multiple records. On the file of the patient, you are able to view single records or delete them. If you decide to view a record, it will direct you inside the record where you will be able to edit it. Clickin on the name of the patient will always direct you to the patient's main file.
+
+Once you assign appointments to your patients, you can go to the *appointments* tab on the navbar. An interface will display with a list of the appointments of your patients, organized by date. No appointment older than today will be shown. To look for a past appointment, search for the patient file. 
 
