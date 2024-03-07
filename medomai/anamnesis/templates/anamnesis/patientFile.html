@@ -22,7 +22,7 @@
                     <a href="{% url 'deletefile' file_id=file.id patient_id=patient.id %}" class="btn btn-primary">Delete file</a>
                 </div>
                 <div class="card-footer text-muted">
-                {{file.date}}
+                File created on {{file.date}}
                 </div>
             </div>
         {% endfor %}
