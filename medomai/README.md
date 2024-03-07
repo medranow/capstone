@@ -38,3 +38,5 @@ If you search for a patient recently created, or list your patients, you are abl
 
 Once you assign appointments to your patients, you can go to the *appointments* tab on the navbar. An interface will display with a list of the appointments of your patients, organized by date. No appointment older than today will be shown. To look for a past appointment, search for the patient file. 
 
+If you want to see a demostration of the app via YouTube, click on the following link [Demostration]()
+
