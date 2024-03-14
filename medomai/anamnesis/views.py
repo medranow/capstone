@@ -229,8 +229,10 @@ def edit(request, id):
     if request.method == "POST":
         data = json.loads(request.body)
         formToEdit = Patienthistory.objects.get(pk=id)
+        formToEdit.history = data['history']
         formToEdit.diagnostic = data['diagnostic']
         formToEdit.prescription = data['prescription']
+        
         
         # Check if the date is provided in the data
         if 'date' in data and data['date']:
