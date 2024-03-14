@@ -108,6 +108,7 @@ function getCookie(name) {
                 <h5 class="card-title mb-2">Next appointment:</h5>                  
                 <p id="nextappointment_{{fileofpatient.id}}" class="card-text">{{fileofpatient.nextappointment}}</p>
                     <input type="datetime-local" id="dateEdit_{{ fileofpatient.id }}" value="" style="display:none"/>
+                
 
                 <button type="button" class="btn btn-primary" onclick="edit({{fileofpatient.id}})">Edit</button><button type="button" class="btn btn-primary" onclick="save({{fileofpatient.id}})">Save</button>
             </div>

@@ -4,10 +4,20 @@
 {% block body %}
 {% if user.is_authenticated %}
 <div class="container">
-    <div class="row ml-1">
-        Patient: {{name}} {{lastname}}<br>
-        Date: {{date}}
+    <div class="card">
+        <div class="card-body">
+            <h5>Patient: {{name}} {{lastname}}</h5><br>
+            Date: {{date}}<br>
+            <p class="card-text">
+                Personal Background: {{personalBackground}}
+            </p>
+            <p class="card-text">
+                Family Background: {{familyBackground}}
+            </p>
+        </div>
     </div>
+   
+
     <form action="{% url 'file' patient_id=patientid %}" class="mb-5" method="post">
         {% csrf_token %}
         <div class="container">

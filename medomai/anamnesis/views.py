@@ -89,6 +89,8 @@ def patient(request):
         city = request.POST["city"]
         state = request.POST["state"]
         phone = request.POST["phonenumber"]
+        personalBackground = request.POST["personalBackground"]
+        familyBackground = request.POST["familyBackground"]
 
         
         # Create a new patient
@@ -100,7 +102,9 @@ def patient(request):
             city = city,
             state = state,
             phonenumber = phone,
-            date = datetime.now()
+            date = datetime.now(),
+            personalBackground = personalBackground,
+            familyBackground = familyBackground,
         )
         newPatient.save()
 
@@ -120,11 +124,16 @@ def history(request, patient_id):
         lastname = patient.lastname
         date = patient.date
         patientid = patient.id
+        familyBackground = patient.familyBackground
+        personalBackground = patient.personalBackground
+
         return render(request, "anamnesis/patientHistory.html", {
             "name": name.capitalize(),
             "lastname": lastname,
             "date": date,
-            "patientid": patientid
+            "patientid": patientid,
+            "familyBackground": familyBackground,
+            "personalBackground": personalBackground,
 
         })
     return render(request, "f'anamnesis/historyForm/{patientid}")
