@@ -15,6 +15,9 @@ body {
     background-color: #d9cfc1;  
 }
 
+div {
+    margin: 0 auto;
+}
 
 h1 {
     color: #9a6d44;
@@ -103,15 +106,16 @@ h5 {
 }
 
 nav {
-    width: 100%;
-    box-sizing: content-box;
+    box-sizing: border-box;
     overflow: scroll;
     background-color: rgb(128, 161, 193);
     color: white;
+    width: 100%;
 }
 
 .navbar-nav li:hover {
     background-color:#eee3ab;
+
 }
 
 #printContent {
