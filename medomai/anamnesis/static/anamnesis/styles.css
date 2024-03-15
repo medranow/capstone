@@ -1,4 +1,4 @@
-body{
+body {
     position: relative;
     background-color: rgb(245, 239, 220);
     font-family: "Calibri";
@@ -74,23 +74,31 @@ h5 {
         background-color: white;
         
     }
+
+    pre {
+        outline: none;
+    }
+
     #printContent, #printContent * {
         visibility: visible;
         text-align: left;
-        font-size: 30px;
+        font-size: 20px;
     }
     #printContent {
-        position: relative;
+        position: absolute;
         left: 0;
         top: 0;
     }
+
+    #printContent::before {
+        content: "Prescription";
+        font-size: 30px;
+        text-align: center;
+    }
+
     .content {
         width: 50%;
         margin: 0 auto;
-    }
-
-    @page {
-        size: ;
     }
 }
 
@@ -104,6 +112,19 @@ nav {
 
 .navbar-nav li:hover {
     background-color:#eee3ab;
+}
+
+#printContent {
+    font-family: "Calibri";
+    outline: none;
+    overflow: auto;
+}
+
+pre {
+    white-space: pre-wrap; /* Preserve line breaks and wrap long lines */
+    overflow-x: auto; /* Enable horizontal scrollbars if needed */
+    word-wrap: break-word; /* Break long words to prevent overflow */
+    font-family: "Calibri";
 }
 
 ul {

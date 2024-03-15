@@ -105,19 +105,19 @@ function getCookie(name) {
 {% if user.is_authenticated %}
 <a href="{% url 'file' fileofpatient.patient.id%}"><h2 class="mt-4" style="text-align: center;">{{fileofpatient.patient}}</h2></a>
     
-        <div class="card container col-sm-8" style="text-align: center;">
+        <div class="card container col-sm-8">
             <div class="card-body">
-                <h5 class="card-title mb-2">Visit</h5>
-                <p class="card-text">{{fileofpatient.visit}}</p>
-                <h5 class="card-subtitletitle mb-2">History</h5>
+                <h5 class="card-title mb-2" style="text-align: center;">Visit</h5>
+                <p class="card-text " style="text-align: center;">{{fileofpatient.visit}}</p>
+                <h5 class="card-subtitletitle mb-2" style="text-align: center;">History</h5>
                 <p id="history_{{fileofpatient.id}}" class="card-text">{{fileofpatient.history}}</p>
                     <textarea class="form-control" id="historyEdit_{{ fileofpatient.id }}" style="display:none"></textarea>
-                <h5 class="card-title mb-2">Diagnostic</h5>
+                <h5 class="card-title mb-2" style="text-align: center;">Diagnostic</h5>
                 <p id="diagnostic_{{fileofpatient.id}}" class="card-text">{{fileofpatient.diagnostic}}</p>
                     <textarea class="form-control" id="diagnosticEdit_{{ fileofpatient.id }}" style="display:none"></textarea>
-                <h5 class="card-title mb-2">Prescription</h5>
+                <h5 class="card-title mb-2" style="text-align: center;">Prescription</h5>
                 <div id="printContent">
-                    <p id="prescription_{{fileofpatient.id}}" class="card-text">{{fileofpatient.prescription}}</p>
+                    <pre id="prescription_{{fileofpatient.id}}" class="card-text">{{fileofpatient.prescription}}</pre>
                 </div>
                     <textarea class="form-control" id="prescriptionEdit_{{ fileofpatient.id }}" style="display:none"></textarea> 
                 <h5 class="card-title mb-2">Next appointment:</h5>                  
