@@ -11,7 +11,7 @@
         var diagnostic = document.querySelector(`#diagnostic_${id}`).textContent;
         var prescription = document.querySelector(`#prescription_${id}`).textContent;
         var dateappointment = document.querySelector(`#nextappointment_${id}`).textContent;
-        console.log(diagnostic, prescription, dateappointment)
+        console.log(diagnostic, history, prescription, dateappointment)
 
         //Toggle on and off between the textarea and the div that holds the text
         document.querySelector(`#historyEdit_${id}`).style.display= 'block';
@@ -30,6 +30,7 @@
         document.querySelector(`#diagnosticEdit_${id}`).innerHTML = diagnostic;
         document.querySelector(`#prescriptionEdit_${id}`).innerHTML = prescription;
         document.querySelector(`#historyEdit_${id}`).innerHTML = history;
+        document.querySelector(`#dateEdit_${id}`).innerHTML = dateappointment;
 
     }
 
