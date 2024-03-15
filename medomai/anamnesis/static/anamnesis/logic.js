@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         search(); // Call the search function
     });
     //Print prescription
-    document.querySelector('#printPrescription').addEventListener('click', () => print());
+    document.querySelector('#printPrescription').addEventListener('click', () => printPage());
 
 
 
@@ -141,8 +141,7 @@ async function search() {
 }
 
 
-function print() {
-    console.log("function called");
+function printPage() {
     window.print();
 }
 
