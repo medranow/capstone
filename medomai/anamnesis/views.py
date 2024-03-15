@@ -186,8 +186,11 @@ def file(request, patient_id):
 
         newFile.save()
 
+        #Get the id of the new file
+        file = Patienthistory.objects.get(pk=newFile.id)
+
         # Redirect the doctor to the file of the patient
-        return HttpResponseRedirect(reverse("file", args=(patient_id,)))
+        return HttpResponseRedirect(reverse("fileview", args=(file.id,)))
 
 
 def fileview(request, file_id):
