@@ -68,6 +68,32 @@ h5 {
     background-color: #ba3f1d;
 }
 
+@media print {
+    body *  {
+        visibility: hidden;
+        background-color: white;
+        
+    }
+    #printContent, #printContent * {
+        visibility: visible;
+        text-align: left;
+        font-size: 30px;
+    }
+    #printContent {
+        position: relative;
+        left: 0;
+        top: 10;
+    }
+    .content {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    @page {
+        size: ;
+    }
+}
+
 nav {
     width: 100%;
     box-sizing: content-box;

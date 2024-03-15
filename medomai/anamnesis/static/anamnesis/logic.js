@@ -8,11 +8,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // See all patients and go back to adding a new patient
     document.querySelector('#seeallpatients').addEventListener('click', () => display_patients());
     document.querySelector('#goBackToNewForm').addEventListener('click', () => goBackForm());
-
     document.querySelector('#searchbtn').addEventListener('click', (event) => {
         event.preventDefault(); // Prevent default form submission behavior
         search(); // Call the search function
     });
+    //Print prescription
+    document.querySelector('#printPrescription').addEventListener('click', () => print());
+
 
 
 });
@@ -139,7 +141,10 @@ async function search() {
 }
 
 
-
+function print() {
+    console.log("function called");
+    window.print();
+}
 
 function getCookie(name) {
     let cookieValue = null;
@@ -155,3 +160,4 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+

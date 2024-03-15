@@ -116,14 +116,28 @@ function getCookie(name) {
                 <p id="diagnostic_{{fileofpatient.id}}" class="card-text">{{fileofpatient.diagnostic}}</p>
                     <textarea class="form-control" id="diagnosticEdit_{{ fileofpatient.id }}" style="display:none"></textarea>
                 <h5 class="card-title mb-2">Prescription</h5>
-                <p id="prescription_{{fileofpatient.id}}" class="card-text">{{fileofpatient.prescription}}</p>
+                <div id="printContent">
+                    <p id="prescription_{{fileofpatient.id}}" class="card-text">{{fileofpatient.prescription}}</p>
+                </div>
                     <textarea class="form-control" id="prescriptionEdit_{{ fileofpatient.id }}" style="display:none"></textarea> 
                 <h5 class="card-title mb-2">Next appointment:</h5>                  
                 <p id="nextappointment_{{fileofpatient.id}}" class="card-text">{{fileofpatient.nextappointment}}</p>
                     <input type="datetime-local" id="dateEdit_{{ fileofpatient.id }}" value="" style="display:none"/>
                 
-
-                <button type="button" class="btn btn-primary" onclick="edit({{fileofpatient.id}})">Edit</button><button type="button" class="btn btn-primary" onclick="save({{fileofpatient.id}})">Save</button>
+                <div class="container">
+                    <div class="row row justify-content-md-center">
+                        <div class="col">
+                            <button type="button" class="btn btn-primary" onclick="edit({{fileofpatient.id}})">Edit</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-primary" onclick="save({{fileofpatient.id}})">Save</button>
+                        </div>
+                        <div class="col">
+                            <button id="printPrescription" type="button" class="btn btn-primary" onclick="print()">Print prescription</button>
+                        </div>
+                    </div>
+                </div>
+               
             </div>
         </div>
 {% else %}
