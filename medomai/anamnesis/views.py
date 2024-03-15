@@ -167,6 +167,7 @@ def file(request, patient_id):
         diagnostic = request.POST["diagnostic"]
         prescription = request.POST["prescription"]
         date = request.POST["date"]
+        physicalExam = request.POST["physicalExam"]
 
         if date:
             date = datetime.strptime(date, '%Y-%m-%dT%H:%M') # Convert the input value to a Python datetime object 
@@ -181,6 +182,7 @@ def file(request, patient_id):
             prescription = prescription,
             visit = reasonforvisit,
             nextappointment = date,
+            physicalExam = physicalExam,
 
         )
 
@@ -238,6 +240,7 @@ def edit(request, id):
         data = json.loads(request.body)
         formToEdit = Patienthistory.objects.get(pk=id)
         formToEdit.history = data['history']
+        formToEdit.physicalExam = data['physical']
         formToEdit.diagnostic = data['diagnostic']
         formToEdit.prescription = data['prescription']
         

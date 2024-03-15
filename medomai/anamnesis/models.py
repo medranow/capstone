@@ -29,6 +29,7 @@ class Patienthistory(models.Model):
     diagnostic =models.CharField(max_length=1500, blank=True, null=True)
     history =models.CharField(max_length=1500, blank=True, null=True) # Explanation of the symptoms
     prescription = models.CharField(max_length=1500, blank=True, null=True)
+    physicalExam = models.CharField(max_length=1500, blank=True, null=True)
     visit = models.CharField(max_length=50, blank=True, null=True) # Reason the patient is visiting
     nextappointment = models.DateTimeField(null=True, blank=True)
     

@@ -8,6 +8,7 @@
 
         // Obtain the various entries of the form
         var history = document.querySelector(`#history_${id}`).textContent;
+        var physical = document.querySelector(`#physical_${id}`).textContent;
         var diagnostic = document.querySelector(`#diagnostic_${id}`).textContent;
         var prescription = document.querySelector(`#prescription_${id}`).textContent;
         var dateappointment = document.querySelector(`#nextappointment_${id}`).textContent;
@@ -16,6 +17,9 @@
         //Toggle on and off between the textarea and the div that holds the text
         document.querySelector(`#historyEdit_${id}`).style.display= 'block';
         document.querySelector(`#history_${id}`).style.display= 'none';
+
+        document.querySelector(`#physicalEdit_${id}`).style.display= 'block';
+        document.querySelector(`#physical_${id}`).style.display= 'none';
 
         document.querySelector(`#diagnosticEdit_${id}`).style.display= 'block';
         document.querySelector(`#diagnostic_${id}`).style.display= 'none';
@@ -28,6 +32,7 @@
 
         //Populate the textarea element with the post text
         document.querySelector(`#diagnosticEdit_${id}`).innerHTML = diagnostic;
+        document.querySelector(`#physicalEdit_${id}`).innerHTML = physical;
         document.querySelector(`#prescriptionEdit_${id}`).innerHTML = prescription;
         document.querySelector(`#historyEdit_${id}`).innerHTML = history;
         document.querySelector(`#dateEdit_${id}`).innerHTML = dateappointment;
@@ -37,6 +42,7 @@
 function save(id) {
     // Get the new texts
     let newHistory = document.querySelector(`#historyEdit_${id}`).value;
+    let newPhysical = document.querySelector(`#physicalEdit_${id}`).value;
     let newDiagnostic = document.querySelector(`#diagnosticEdit_${id}`).value;
     let newPrescription = document.querySelector(`#prescriptionEdit_${id}`).value;
     let newDate = document.querySelector(`#dateEdit_${id}`).value;
@@ -50,6 +56,7 @@ function save(id) {
         },
         body: JSON.stringify({
             history: newHistory,
+            physical: newPhysical,
             diagnostic: newDiagnostic,
             prescription: newPrescription,
             date: newDate,
@@ -60,6 +67,7 @@ function save(id) {
 
      //Populate the paragraph element with the the new info
     document.querySelector(`#history_${id}`).innerHTML = newHistory;
+    document.querySelector(`#physical_${id}`).innerHTML = newPhysical;
     document.querySelector(`#diagnostic_${id}`).innerHTML = newDiagnostic;
     document.querySelector(`#prescription_${id}`).innerHTML = newPrescription;
     document.querySelector(`#nextappointment_${id}`).innerHTML = newDate;
@@ -67,6 +75,9 @@ function save(id) {
     //Toggle on and off between the textarea and the div that holds the text
     document.querySelector(`#historyEdit_${id}`).style.display= 'none';
     document.querySelector(`#history_${id}`).style.display= 'block';
+
+    document.querySelector(`#physicalEdit_${id}`).style.display= 'none';
+    document.querySelector(`#physical_${id}`).style.display= 'block';
 
     document.querySelector(`#diagnosticEdit_${id}`).style.display= 'none';
     document.querySelector(`#diagnostic_${id}`).style.display= 'block';
@@ -109,17 +120,25 @@ function getCookie(name) {
             <div class="card-body">
                 <h5 class="card-title mb-2" style="text-align: center;">Visit</h5>
                 <p class="card-text " style="text-align: center;">{{fileofpatient.visit}}</p>
+
                 <h5 class="card-subtitletitle mb-2" style="text-align: center;">History</h5>
                 <p id="history_{{fileofpatient.id}}" class="card-text">{{fileofpatient.history}}</p>
                     <textarea class="form-control" id="historyEdit_{{ fileofpatient.id }}" style="display:none"></textarea>
+
+                <h5 class="card-subtitletitle mb-2" style="text-align: center;">Physical Exam</h5>
+                <p id="physical_{{fileofpatient.id}}" class="card-text">{{fileofpatient.physicalExam}}</p>
+                    <textarea class="form-control" id="physicalEdit_{{ fileofpatient.id }}" style="display:none"></textarea>
+
                 <h5 class="card-title mb-2" style="text-align: center;">Diagnostic</h5>
                 <p id="diagnostic_{{fileofpatient.id}}" class="card-text">{{fileofpatient.diagnostic}}</p>
                     <textarea class="form-control" id="diagnosticEdit_{{ fileofpatient.id }}" style="display:none"></textarea>
+
                 <h5 class="card-title mb-2" style="text-align: center;">Prescription</h5>
                 <div id="printContent">
                     <pre id="prescription_{{fileofpatient.id}}" class="card-text">{{fileofpatient.prescription}}</pre>
                 </div>
                     <textarea class="form-control" id="prescriptionEdit_{{ fileofpatient.id }}" style="display:none"></textarea> 
+
                 <h5 class="card-title mb-2">Next appointment:</h5>                  
                 <p id="nextappointment_{{fileofpatient.id}}" class="card-text">{{fileofpatient.nextappointment}}</p>
                     <input type="datetime-local" id="dateEdit_{{ fileofpatient.id }}" value="" style="display:none"/>
