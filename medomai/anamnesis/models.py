@@ -22,6 +22,8 @@ class Patient(models.Model):
     def __str__(self):
         return f"Patient {self.name} {self.lastname}"
 
+class Image(models.Model):
+    image = models.ImageField(upload_to='images/')
 
 class Patienthistory(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, blank=True, null=True, related_name="patient_history")
@@ -32,5 +34,8 @@ class Patienthistory(models.Model):
     physicalExam = models.CharField(max_length=1500, blank=True, null=True)
     visit = models.CharField(max_length=50, blank=True, null=True) # Reason the patient is visiting
     nextappointment = models.DateTimeField(null=True, blank=True)
+    images = models.ManyToManyField(Image)
+
+
     
 

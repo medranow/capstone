@@ -10,9 +10,9 @@ import json
 from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
 import pytz
-
+from .forms import uploadImage
 # Import my models
-from .models import Patient, Patienthistory
+from .models import Patient, Patienthistory, Image
 
 # Create your views here.
 def index(request):
@@ -127,6 +127,9 @@ def history(request, patient_id):
         familyBackground = patient.familyBackground
         personalBackground = patient.personalBackground
 
+        # Create a form for the images
+        form = uploadImage()
+
         return render(request, "anamnesis/patientHistory.html", {
             "name": name.capitalize(),
             "lastname": lastname,
@@ -134,6 +137,7 @@ def history(request, patient_id):
             "patientid": patientid,
             "familyBackground": familyBackground,
             "personalBackground": personalBackground,
+            "form": form,
 
         })
     return render(request, "f'anamnesis/historyForm/{patientid}")
@@ -168,11 +172,13 @@ def file(request, patient_id):
         prescription = request.POST["prescription"]
         date = request.POST["date"]
         physicalExam = request.POST["physicalExam"]
+        photos = request.FILES.getlist("photo") # get image uploaded
 
         if date:
             date = datetime.strptime(date, '%Y-%m-%dT%H:%M') # Convert the input value to a Python datetime object 
         else:
             date = None
+
 
         newFile = Patienthistory(
             patient = patient_instance,
@@ -187,6 +193,10 @@ def file(request, patient_id):
         )
 
         newFile.save()
+
+        #Save images to model
+        for photo in photos:
+            newFile.images.create(image=photo)
 
         #Get the id of the new file
         file = Patienthistory.objects.get(pk=newFile.id)
