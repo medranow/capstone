@@ -159,6 +159,19 @@ function getCookie(name) {
                
             </div>
         </div>
+
+         <!--Render images-->
+         <div class="container">
+            <div class="row">
+                {% for image in images %}
+                <p>The url is {{ image.image }}</p>
+                <div class="card" style="width: 18rem">
+                    <img class="card-image-top" src="{{ image.image }}">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
 {% else %}
 <h1>403  You do not have access. Log in</h1>
 {% endif %}     

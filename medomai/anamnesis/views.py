@@ -11,8 +11,9 @@ from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
 import pytz
 from .forms import uploadImage
+from django.core.exceptions import ObjectDoesNotExist 
 # Import my models
-from .models import Patient, Patienthistory, Image
+from .models import Patient, Patienthistory, Image, PatientImage
 
 # Create your views here.
 def index(request):
@@ -172,12 +173,18 @@ def file(request, patient_id):
         prescription = request.POST["prescription"]
         date = request.POST["date"]
         physicalExam = request.POST["physicalExam"]
-        photos = request.FILES.getlist("photo") # get image uploaded
+        photo = request.FILES.get("photo") # get image uploaded
 
         if date:
             date = datetime.strptime(date, '%Y-%m-%dT%H:%M') # Convert the input value to a Python datetime object 
         else:
             date = None
+
+        # Save the photo to the Image model
+        if photo:
+            image_instance = Image.objects.create(image=photo)
+        else:
+            image_instance = None  # If no photo is uploaded, set it to None
 
 
         newFile = Patienthistory(
@@ -189,14 +196,21 @@ def file(request, patient_id):
             visit = reasonforvisit,
             nextappointment = date,
             physicalExam = physicalExam,
-
         )
+        
 
         newFile.save()
 
-        #Save images to model
-        for photo in photos:
-            newFile.images.create(image=photo)
+        #Pull the current newfile to save the photo in that file
+        file = Patienthistory.objects.get(pk=newFile.id)
+
+        # Associate the saved image with the Patienthistory instance
+        if image_instance:
+            newImage = PatientImage(
+                patient_file = file,
+                image = image_instance
+            )
+            newImage.save()
 
         #Get the id of the new file
         file = Patienthistory.objects.get(pk=newFile.id)
@@ -207,10 +221,18 @@ def file(request, patient_id):
 
 def fileview(request, file_id):
     fileofpatient = Patienthistory.objects.get(pk=file_id)
-    return render(request, "anamnesis/fileview.html", {
-        "fileofpatient": fileofpatient,
-    })
 
+    try:
+        images = PatientImage.objects.filter(patient_file=fileofpatient) #get the images associated with this file
+        return render(request, "anamnesis/fileview.html", {
+            "fileofpatient": fileofpatient,
+            "images": images
+        })
+    except ObjectDoesNotExist:
+        return render(request, "anamnesis/fileview.html", {
+            "fileofpatient": fileofpatient,
+        })
+        
 # Delete a file
 def delete(request, file_id, patient_id):
     try:
