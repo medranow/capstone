@@ -42,6 +42,10 @@ class Image(models.Model):
 
     def __str__(self):
         return f"{self.image}"
+    
+    @property
+    def get_image_url(self):
+        return self.image.url
 
 class PatientImage(models.Model):
     patient_file = models.ForeignKey(Patienthistory, on_delete=models.CASCADE, related_name="images")

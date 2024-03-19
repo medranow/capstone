@@ -224,6 +224,7 @@ def fileview(request, file_id):
 
     try:
         images = PatientImage.objects.filter(patient_file=fileofpatient) #get the images associated with this file
+        #image_urls = [image.image.get_image_url for image in images]
         return render(request, "anamnesis/fileview.html", {
             "fileofpatient": fileofpatient,
             "images": images
