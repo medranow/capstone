@@ -164,9 +164,9 @@ function getCookie(name) {
          <div class="container">
             <div class="row">
                 {% for image in images %}
-                <p>The url is {{ image.image.get_image_url }}</p>
+                <p>The url is {{ image }}</p>
                 <div class="card" style="width: 18rem">
-                    <img class="card-image-top" src="{{ image.image.get_image_url }}">
+                    <img class="card-image-top" src="{{ image }}">
                 </div>
                 {% endfor %}
             </div>

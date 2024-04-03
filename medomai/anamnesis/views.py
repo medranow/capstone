@@ -223,11 +223,14 @@ def fileview(request, file_id):
     fileofpatient = Patienthistory.objects.get(pk=file_id)
 
     try:
-        images = PatientImage.objects.filter(patient_file=fileofpatient) #get the images associated with this file
-        #image_urls = [image.image.get_image_url for image in images]
+        patient_images = fileofpatient.images.all()  #get the images associated with this file
+
+        image_urls = [image.get_image_url for patient_image in patient_images for image in patient_image.image.all()]
+
+
         return render(request, "anamnesis/fileview.html", {
             "fileofpatient": fileofpatient,
-            "images": images
+            "images": image_urls
         })
     except ObjectDoesNotExist:
         return render(request, "anamnesis/fileview.html", {

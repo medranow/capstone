@@ -49,7 +49,7 @@ class Image(models.Model):
 
 class PatientImage(models.Model):
     patient_file = models.ForeignKey(Patienthistory, on_delete=models.CASCADE, related_name="images")
-    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    image = models.ManyToManyField(Image, related_name="images")
 
     def __str__(self):
         return f"Foto of file {self.patient_file} with url {self.image}"
