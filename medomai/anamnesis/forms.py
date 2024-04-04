@@ -4,4 +4,4 @@ from multiupload.fields import MultiFileField, MultiMediaField, MultiImageField
 
 
 class uploadImage(forms.Form):
-    photos = MultiImageField(min_num=1, max_num=3, max_file_size=1024*1024*5)
+    photos = MultiImageField(min_num=1, max_num=2, max_file_size=1024*1024*5, required=False)
