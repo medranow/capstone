@@ -173,18 +173,13 @@ def file(request, patient_id):
         prescription = request.POST["prescription"]
         date = request.POST["date"]
         physicalExam = request.POST["physicalExam"]
-        photo = request.FILES.get("photo") # get image uploaded
+        photos = request.FILES.getlist("photos") # get image uploaded
 
         if date:
             date = datetime.strptime(date, '%Y-%m-%dT%H:%M') # Convert the input value to a Python datetime object 
         else:
             date = None
 
-        # Save the photo to the Image model
-        if photo:
-            image_instance = Image.objects.create(image=photo)
-        else:
-            image_instance = None  # If no photo is uploaded, set it to None
 
 
         newFile = Patienthistory(
@@ -204,13 +199,17 @@ def file(request, patient_id):
         #Pull the current newfile to save the photo in that file
         file = Patienthistory.objects.get(pk=newFile.id)
 
-        # Associate the saved image with the Patienthistory instance
-        if image_instance:
-            newImage = PatientImage(
-                patient_file = file,
-                image = image_instance
-            )
-            newImage.save()
+        # Save the photo to the Image model
+        for photo in photos:
+            if photo:
+                image_instance = Image.objects.create(image=photo)
+            else:
+                image_instance = None  # If no photo is uploaded, set it to None
+
+            # Associate the saved image with the Patienthistory instance
+            if image_instance:
+                newImage = PatientImage.objects.create(patient_file=file)
+                newImage.image.set([image_instance])  # use .set() method to associate the image with the PatientImage instance
 
         #Get the id of the new file
         file = Patienthistory.objects.get(pk=newFile.id)
@@ -225,6 +224,7 @@ def fileview(request, file_id):
     try:
         patient_images = fileofpatient.images.all()  #get the images associated with this file
 
+        #Get all the urls associated with each patient_image int
         image_urls = [image.get_image_url for patient_image in patient_images for image in patient_image.image.all()]
 
 

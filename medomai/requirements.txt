@@ -1,1 +1,4 @@
 pip install pytz
+python -m pip install Pillow
+pip install django-multifilefield
+pip install django-multiupload
