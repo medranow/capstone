@@ -19,6 +19,12 @@ div {
     margin: 0 auto;
 }
 
+#form_file {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+}
+
 h1 {
     color: #9a6d44;
 }

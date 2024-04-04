@@ -219,23 +219,49 @@ def file(request, patient_id):
 
 
 def fileview(request, file_id):
-    fileofpatient = Patienthistory.objects.get(pk=file_id)
+    if request.method == "GET":
+        fileofpatient = Patienthistory.objects.get(pk=file_id)
+        form = uploadImage()
+        id = file_id
 
-    try:
-        patient_images = fileofpatient.images.all()  #get the images associated with this file
+        try:
+            patient_images = fileofpatient.images.all()  #get the images associated with this file
 
-        #Get all the urls associated with each patient_image int
-        image_urls = [image.get_image_url for patient_image in patient_images for image in patient_image.image.all()]
+            #Get all the urls associated with each patient_image int
+            image_urls = [image.get_image_url for patient_image in patient_images for image in patient_image.image.all()]
 
 
-        return render(request, "anamnesis/fileview.html", {
-            "fileofpatient": fileofpatient,
-            "images": image_urls
-        })
-    except ObjectDoesNotExist:
-        return render(request, "anamnesis/fileview.html", {
-            "fileofpatient": fileofpatient,
-        })
+            return render(request, "anamnesis/fileview.html", {
+                "fileofpatient": fileofpatient,
+                "images": image_urls,
+                "form": form,
+                "id": id
+            })
+        except ObjectDoesNotExist:
+            return render(request, "anamnesis/fileview.html", {
+                "fileofpatient": fileofpatient,
+                "form": form,
+                "id": id
+            })
+    
+    if request.method == "POST":
+        file = Patienthistory.objects.get(pk=file_id)
+        photos = request.FILES.getlist("photos") # get image uploaded
+
+        # Save the photo to the Image model
+        for photo in photos:
+            if photo:
+                image_instance = Image.objects.create(image=photo)
+            else:
+                image_instance = None  # If no photo is uploaded, set it to None
+
+            # Associate the saved image with the Patienthistory instance
+            if image_instance:
+                newImage = PatientImage.objects.create(patient_file=file)
+                newImage.image.set([image_instance])  # use .set() method to associate the image with the PatientImage instance
+
+        return HttpResponseRedirect(reverse("fileview", args=(file.id,)))
+
         
 # Delete a file
 def delete(request, file_id, patient_id):
@@ -298,8 +324,6 @@ def edit(request, id):
 
 def patients(request):
     if request.method == "GET":
-
-
         patients = Patient.objects.filter(doctor=request.user).order_by('name').values('name', 'lastname', 'id')
 
         return JsonResponse({'message': 'all patients fetched', "data": list(patients)})
