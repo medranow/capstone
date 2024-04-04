@@ -20,13 +20,32 @@ div {
 }
 
 #form_file {
+    border: 2px solid #d9cfc1;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5px;
+    margin-top: 10px;
+    text-align: center;
+    background-color: #eee3ab;
+    background-image: linear-gradient(#eee3ab, #ddc173);
+    width: 280px;
+    height: 150px;
+    padding-bottom: 0.2px;
+    padding-top: 15px;
+    color: #996f47;
+
+}
+
+#formView {
+    margin: 1px;
+    padding: 3px;
+}
+
+#buttonView {
+    padding: 5px;
 }
 
 h1 {
-    color: #9a6d44;
+    color: #d9cfc1;
 }
 
 h2 {
@@ -108,6 +127,13 @@ h5 {
     .content {
         width: 50%;
         margin: 0 auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .imageView {
+        width: 100%;
+        height: auto;
     }
 }
 

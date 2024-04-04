@@ -146,13 +146,13 @@ function getCookie(name) {
                 <div class="container">
                     <div class="row row justify-content-md-center">
                         <div class="col">
-                            <button type="button" class="btn btn-primary" onclick="edit({{fileofpatient.id}})">Edit</button>
+                            <button type="button" class="btn btn-light" onclick="edit({{fileofpatient.id}})">Edit</button>
                         </div>
                         <div class="col">
-                            <button type="button" class="btn btn-primary" onclick="save({{fileofpatient.id}})">Save</button>
+                            <button type="button" class="btn btn-light" onclick="save({{fileofpatient.id}})">Save</button>
                         </div>
                         <div class="col">
-                            <button id="printPrescription" type="button" class="btn btn-primary" onclick="print()">Print prescription</button>
+                            <button id="printPrescription" type="button" class="btn btn-light" onclick="print()">Print prescription</button>
                         </div>
                     </div>
                 </div>
@@ -161,24 +161,30 @@ function getCookie(name) {
         </div>
 
         <div id="form_file">
+            Upload any image to this file:
             <form action="{% url 'fileview' file_id=id %}" class="mb-5" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                    <div class="mt-3">
-                        {{form.photos}}
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </form>
+                <div id="formView" class="mt-3">
+                    {{form.photos}}
+                </div>
+                <div id="buttonView">
+                    <button type="submit" class="btn btn-light">Save</button>
+                </div>
+            </form>
         </div>
         
 
          <!--Render images-->
-         <div class="container">
+         <div class="container-fluid">
             <div class="row">
                 {% for image in images %}
-                <p>The url is {{ image }}</p>
-                <div class="card" style="width: 18rem">
-                    <img class="card-image-top" src="{{ image }}">
+                <!--<p>The url is {{ image }}</p> --> 
+                <div class="col-md-4">
+                    <div class="card mb-3 imageView">
+                        <img class="card-image-top" src="{{ image }}" alt="skin">
+                    </div>
                 </div>
+                
                 {% endfor %}
             </div>
         </div>
