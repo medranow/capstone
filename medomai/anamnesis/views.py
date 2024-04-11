@@ -12,8 +12,11 @@ from django.views.decorators.csrf import csrf_exempt
 import pytz
 from .forms import uploadImage
 from django.core.exceptions import ObjectDoesNotExist 
+from PIL import Image as PilImage
+
 # Import my models
 from .models import Patient, Patienthistory, Image, PatientImage
+
 
 # Create your views here.
 def index(request):
@@ -173,14 +176,12 @@ def file(request, patient_id):
         prescription = request.POST["prescription"]
         date = request.POST["date"]
         physicalExam = request.POST["physicalExam"]
-        photos = request.FILES.getlist("photos") # get image uploaded
+        photos = request.FILES.getlist("photos") # get images uploaded
 
         if date:
             date = datetime.strptime(date, '%Y-%m-%dT%H:%M') # Convert the input value to a Python datetime object 
         else:
             date = None
-
-
 
         newFile = Patienthistory(
             patient = patient_instance,
@@ -192,8 +193,6 @@ def file(request, patient_id):
             nextappointment = date,
             physicalExam = physicalExam,
         )
-        
-
         newFile.save()
 
         #Pull the current newfile to save the photo in that file
@@ -202,6 +201,8 @@ def file(request, patient_id):
         # Save the photo to the Image model
         for photo in photos:
             if photo:
+                with PilImage.open(photo) as img:
+                    img.save(photo, quality=20)
                 image_instance = Image.objects.create(image=photo)
             else:
                 image_instance = None  # If no photo is uploaded, set it to None
@@ -251,6 +252,8 @@ def fileview(request, file_id):
         # Save the photo to the Image model
         for photo in photos:
             if photo:
+                with PilImage.open(photo) as img:
+                    img.save(photo, quality=20)
                 image_instance = Image.objects.create(image=photo)
             else:
                 image_instance = None  # If no photo is uploaded, set it to None
