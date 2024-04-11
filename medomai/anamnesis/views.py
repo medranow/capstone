@@ -152,7 +152,7 @@ def history(request, patient_id):
 def file(request, patient_id):
     if request.method == "GET":
         patient = Patient.objects.get(pk=patient_id)
-        files = Patienthistory.objects.filter(patient_id=patient_id)
+        files = Patienthistory.objects.filter(patient_id=patient_id).order_by('id')
 
         # Pagination
          # Pagination
