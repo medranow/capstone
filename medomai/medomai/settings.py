@@ -80,6 +80,14 @@ WSGI_APPLICATION = 'medomai.wsgi.application'
 # Initialize environ
 env = Env()
 
+# This is the default database with sqlite3
+#DATABASES = {
+    #'default': {
+      #  'ENGINE': 'django.db.backends.sqlite3',
+      #  'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+   # }
+#}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',

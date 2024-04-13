@@ -12,7 +12,7 @@
         var diagnostic = document.querySelector(`#diagnostic_${id}`).textContent;
         var prescription = document.querySelector(`#prescription_${id}`).textContent;
         var dateappointment = document.querySelector(`#nextappointment_${id}`).textContent;
-        console.log(diagnostic, history, prescription, dateappointment)
+        console.log(diagnostic, history, prescription, dateappointment, dateappointment)
 
         //Toggle on and off between the textarea and the div that holds the text
         document.querySelector(`#historyEdit_${id}`).style.display= 'block';
@@ -106,6 +106,11 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+
+function openImage(url) {
+    window.open(url, "Image", "width=600,height=400");
+}
+
 </script>
 
 {% endblock %}
@@ -181,7 +186,9 @@ function getCookie(name) {
                 <!--<p>The url is {{ image }}</p> --> 
                 <div class="col-md-4">
                     <div class="card mb-3 imageView">
-                        <img class="card-image-top" src="{{ image }}" alt="skin">
+                        <a href="{{ image }}" onclick="openImage('{{ image }}'); return false;">
+                        <img class="card-image-top" src="{{ image }}" alt="skin" style="max-width: 100%; height: auto;">
+                    </a>
                     </div>
                 </div>
                 
