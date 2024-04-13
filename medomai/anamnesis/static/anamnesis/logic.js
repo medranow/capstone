@@ -114,11 +114,12 @@ async function search() {
             // Create the <a> tag
             var link = document.createElement('a');
             link.href = `file/${element.id}`;
-            link.className = 'list-group-item list-group-item-action';
+            link.className = 'list-group-item list-group-item-action textCenter';
 
             // Create the <li> element
             var patient = document.createElement('li');
             patient.innerHTML = `${element.name} ${element.lastname}`;
+            patient.className = 'textCenter';
 
             // Append the <li> to the <a>
             link.appendChild(patient);

@@ -130,7 +130,7 @@ function getCookie(name) {
                     <textarea class="form-control" id="physicalEdit_{{ fileofpatient.id }}" style="display:none"></textarea>
 
                 <h5 class="card-title mb-2" style="text-align: center;">Diagnostic</h5>
-                <p id="diagnostic_{{fileofpatient.id}}" class="card-text">{{fileofpatient.diagnostic}}</p>
+                <p id="diagnostic_{{fileofpatient.id}}" class="card-text" style="text-align: center;">{{fileofpatient.diagnostic}}</p>
                     <textarea class="form-control" id="diagnosticEdit_{{ fileofpatient.id }}" style="display:none"></textarea>
 
                 <h5 class="card-title mb-2" style="text-align: center;">Prescription</h5>
@@ -139,11 +139,11 @@ function getCookie(name) {
                 </div>
                     <textarea class="form-control" id="prescriptionEdit_{{ fileofpatient.id }}" style="display:none"></textarea> 
 
-                <h5 class="card-title mb-2">Next appointment:</h5>                  
-                <p id="nextappointment_{{fileofpatient.id}}" class="card-text">{{fileofpatient.nextappointment}}</p>
+                <h5 class="card-title mb-2" style="text-align: center;">Next appointment:</h5>                  
+                <p id="nextappointment_{{fileofpatient.id}}" class="card-text" style="text-align: center;">{{fileofpatient.nextappointment}}</p>
                     <input type="datetime-local" id="dateEdit_{{ fileofpatient.id }}" value="" style="display:none"/>
                 
-                <div class="container">
+                <div class="container editButton">
                     <div class="row row justify-content-md-center">
                         <div class="col">
                             <button type="button" class="btn btn-light" onclick="edit({{fileofpatient.id}})">Edit</button>
