@@ -18,6 +18,7 @@ class Patient(models.Model):
     date = models.DateTimeField(null=True)
     familyBackground = models.CharField(max_length=1000, blank=True, null=True)
     personalBackground = models.CharField(max_length=1000, blank=True, null=True)
+    active = models.BooleanField(null=True, blank=True)
 
     def __str__(self):
         return f"Patient {self.name} {self.lastname}"
@@ -26,11 +27,11 @@ class Patient(models.Model):
 class Patienthistory(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, blank=True, null=True, related_name="patient_history")
     date = models.DateTimeField() #date the file was created
-    diagnostic =models.CharField(max_length=1500, blank=True, null=True)
-    history =models.CharField(max_length=1500, blank=True, null=True) # Explanation of the symptoms
-    prescription = models.CharField(max_length=1500, blank=True, null=True)
-    physicalExam = models.CharField(max_length=1500, blank=True, null=True)
-    visit = models.CharField(max_length=50, blank=True, null=True) # Reason the patient is visiting
+    diagnostic =models.CharField(max_length=2500, blank=True, null=True)
+    history =models.CharField(max_length=2500, blank=True, null=True) # Explanation of the symptoms
+    prescription = models.CharField(max_length=2500, blank=True, null=True)
+    physicalExam = models.CharField(max_length=2500, blank=True, null=True)
+    visit = models.CharField(max_length=500, blank=True, null=True) # Reason the patient is visiting
     nextappointment = models.DateTimeField(null=True, blank=True)
     
 

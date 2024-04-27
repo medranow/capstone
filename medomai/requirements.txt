@@ -1,4 +1,52 @@
-pip install pytz
-python -m pip install Pillow
-pip install django-multifilefield
-pip install django-multiupload
+asgiref==3.7.2
+attrs==20.3.0
+awscliv2==2.2.0
+awsebcli==3.20.10
+blessed==1.20.0
+boto3==1.23.4
+botocore==1.26.10
+cement==2.8.2
+certifi==2024.2.2
+cffi==1.16.0
+charset-normalizer==3.3.2
+colorama==0.4.3
+coloredlogs==15.0.1
+cryptography==42.0.3
+Django==4.2.1
+django-environ==0.11.2
+django-multifilefield==1.0
+django-multiupload==0.6.1
+django-storages==1.14.2
+executor==23.2
+fasteners==0.19
+gunicorn==21.2.0
+humanfriendly==10.0
+idna==3.6
+importlib_resources==6.4.0
+jellyfish==0.11.2
+jmespath==1.0.1
+lib50==3.0.11
+Markdown==3.5.2
+mysql-connector==2.2.9
+packaging==23.2
+pathspec==0.10.1
+pexpect==4.9.0
+pillow==10.2.0
+property-manager==3.0
+psycopg2-binary==2.9.9
+ptyprocess==0.7.0
+pycparser==2.21
+python-dateutil==2.9.0.post0
+python-dotenv==1.0.1
+pytz==2024.1
+PyYAML==6.0.1
+requests==2.31.0
+s3transfer==0.5.2
+semantic-version==2.8.5
+six==1.16.0
+sqlparse==0.4.4
+submit50==3.1.4
+termcolor==1.1.0
+urllib3==1.26.18
+verboselogs==1.7
+wcwidth==0.1.9

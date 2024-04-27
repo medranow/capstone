@@ -1,0 +1,184 @@
+body {
+    position: relative;
+    background-color: rgb(245, 239, 220);
+    font-family: "Calibri";
+}
+
+
+.btn {
+    border: 2px solid rgb(128, 161, 193)
+    cursor: pointer;
+}
+
+.credential {
+    margin-top: 80px ;
+    
+}
+
+.card {
+    border: 1.5px solid rgb(128, 161, 193);
+    margin-top: 8px;
+    margin-bottom: 6px;
+    background-color: #d9cfc1;  
+}
+
+div {
+    margin: 0 auto;
+}
+
+.editButton {
+    margin-top: 10px;
+}
+
+#form_file {
+    border: 3px solid #d9cfc1;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    text-align: center;
+    background-color: #eee3ab;
+    background-image: linear-gradient(rgb(128, 161, 193), rgb(136, 156, 176));
+    width: 280px;
+    height: 150px;
+    padding-bottom: 0.2px;
+    padding-top: 15px;
+    color: white;
+
+}
+
+#formView {
+    margin: 1px;
+    padding: 3px;
+}
+
+#buttonView {
+    padding: 5px;
+}
+
+h1 {
+    color: #996f47;
+    font-weight: bold;
+}
+
+h2 {
+    color:#996f47;
+    text-align: center;
+}
+
+h5 {
+    color:#996f47;
+}
+
+#imageIndex {
+    background-color: rgb(245, 239, 220);
+    border: none;
+    width:auto;
+    height: 200px;
+    margin-top: 30px;
+    margin-left: 4px;
+    
+}
+
+.imageNav {
+    background-color:  rgb(128, 161, 193);
+    border: none;
+    width:auto;
+    height: 60px;
+}
+
+#indexTitle {
+    text-align: center;
+    font-size: 2rem;
+}
+
+#listofpatients li {
+    color:#ba3f1d;
+    margin-top: 2px;
+    margin-bottom: 5px;
+    padding-right: 5px;
+    
+
+}
+
+#pagination {
+    background-color: rgb(245, 239, 220);
+}
+
+.paginationbtn {
+    background-color: #ba3f1d;
+}
+
+@media print {
+    body *  {
+        visibility: hidden;
+        background-color: white;
+        
+    }
+
+    pre {
+        outline: none;
+    }
+
+    #printContent, #printContent * {
+        visibility: visible;
+        text-align: left;
+        font-size: 20px;
+    }
+    #printContent {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    #printContent::before {
+        content: "Prescription";
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .content {
+        width: 50%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .imageView {
+        width: 100%;
+        height: auto;
+    }
+}
+
+nav {
+    box-sizing: border-box;
+    overflow: scroll;
+    background-color: rgb(128, 161, 193);
+    color: white;
+    width: 100%;
+}
+
+.navbar-nav li:hover {
+    background-color:#eee3ab;
+
+}
+
+#printContent {
+    font-family: "Calibri";
+    outline: none;
+    overflow: auto;
+}
+
+pre {
+    white-space: pre-wrap; /* Preserve line breaks and wrap long lines */
+    overflow-x: auto; /* Enable horizontal scrollbars if needed */
+    word-wrap: break-word; /* Break long words to prevent overflow */
+    font-family: "Calibri";
+}
+
+.textCenter {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+}

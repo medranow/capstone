@@ -40,3 +40,10 @@ Once you assign appointments to your patients, you can go to the *appointments* 
 
 If you want to see a demostration of the app via YouTube, click on the following link [Demostration](https://youtu.be/bCvxh6AMhtk).
 
+Requirements
+pip install pytz
+python -m pip install Pillow
+pip install django-multifilefield
+pip install django-multiupload
+pip install pillow
+

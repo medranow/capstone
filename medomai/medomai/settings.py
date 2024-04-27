@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$rtam$wrky)1km#2fgq*(_d1lrj=u_1lo%&fwf5vlad28k_#-i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['anamnesis.eba-izdarswd.us-east-2.elasticbeanstalk.com']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -88,16 +89,42 @@ env = Env()
    # }
 #}
 
+#DATABASES = {
+ #   'default': {
+  #      'ENGINE': 'django.db.backends.postgresql_psycopg2',
+   #     'NAME': env("DB_NAME"), 
+    #    'USER': env("DB_USER"),
+     #   'PASSWORD': env("DB_PASSWORD"),
+      #  'HOST': env("DB_HOST"), 
+       # 'PORT': env("DB_PORT"),
+    #}
+#}
+
+'''
+if 'RDS_DB_NAME' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ['awseb-e-a2aniphjjj-stack-awsebrdsdatabase-r3sova5iwbjm'],
+            'USER': os.environ['medomai'],
+            'PASSWORD': os.environ['agapelogos5'],
+            'HOST': os.environ['awseb-e-a2aniphjjj-stack-awsebrdsdatabase-r3sova5iwbjm.c3cuaq88idhn.us-east-2.rds.amazonaws.com'],
+            'PORT': os.environ['5432'],
+        }
+    }
+'''
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("DB_NAME"), 
-        'USER': env("DB_USER"),
-        'PASSWORD': env("DB_PASSWORD"),
-        'HOST': env("DB_HOST"), 
-        'PORT': env("DB_PORT"),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'medomai_1',
+        'USER': 'test',
+        'PASSWORD': 'medomaitest5',
+        'HOST': 'database-1.c3cuaq88idhn.us-east-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
 
 AUTH_USER_MODEL = 'anamnesis.User'
 
@@ -141,6 +168,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 
@@ -148,3 +176,27 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# AWS configuration
+AWS_ACCESS_KEY_ID = 'AKIA6GBMEDGCMSWJT62V'
+AWS_SECRET_ACCESS_KEY = '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'
+
+# Basic storage configuration
+AWS_STORAGE_BUCKET_NAME = 'medomai-static-1'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_FILE_OVERWRITE = False
+
+# Set up my storage for Django > 4.2
+STORAGES = {
+
+    #Media file  image management
+    "default":{
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage"
+    },
+
+    # CSS and JS file management
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage"
+
+    },
+}
