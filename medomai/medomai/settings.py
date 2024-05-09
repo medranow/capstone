@@ -107,7 +107,7 @@ if 'RDS_DB_NAME' in os.environ:
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': os.environ['awseb-e-a2aniphjjj-stack-awsebrdsdatabase-r3sova5iwbjm'],
             'USER': os.environ['medomai'],
-            'PASSWORD': os.environ['agapelogos5'],
+            'PASSWORD': os.environ[''],
             'HOST': os.environ['awseb-e-a2aniphjjj-stack-awsebrdsdatabase-r3sova5iwbjm.c3cuaq88idhn.us-east-2.rds.amazonaws.com'],
             'PORT': os.environ['5432'],
         }
