@@ -178,7 +178,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AWS configuration
-AWS_ACCESS_KEY_ID = ''
 
 # Basic storage configuration
 AWS_STORAGE_BUCKET_NAME = 'medomai-static-1'
