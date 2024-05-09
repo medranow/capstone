@@ -179,7 +179,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AWS configuration
 AWS_ACCESS_KEY_ID = ''
-#AWS_SECRET_ACCESS_KEY = ''
 
 # Basic storage configuration
 AWS_STORAGE_BUCKET_NAME = 'medomai-static-1'
